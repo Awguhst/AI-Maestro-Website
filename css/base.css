@@ -197,7 +197,8 @@ kbd {
 }
 
 .btn:hover::before, .btn:focus-visible::before { scale: 1 1; }
-.btn:hover, .btn:focus-visible { color: var(--bg); border-color: var(--ink); }
+.btn:hover, .btn:focus-visible { color: var(--bg); border-color: var(--ink); translate: 0 -1px; box-shadow: 0 12px 28px -16px rgba(244, 243, 240, 0.35); }
+.btn { transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease), translate var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease); }
 
 .btn__ico { width: 14px; height: 14px; flex: none; }
 
@@ -238,12 +239,31 @@ kbd {
 
 .card {
   position: relative;
-  background: var(--bg-2);
   border: 1px solid var(--line);
   padding: clamp(24px, 2.6vw, 38px);
-  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
 }
-.card:hover { border-color: var(--line-2); background: var(--bg-3); }
+.card:hover {
+  border-color: var(--line-3);
+  translate: 0 -3px;
+  box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--line);
+}
+
+/* Spotlight: a faint lamp that follows the pointer across a card, drawn as
+   the card's own background image so the bracket corner ticks keep their
+   pseudo-elements. app.js writes --mx / --my in px; --spot fades it in. */
+@property --spot { syntax: "<number>"; inherits: false; initial-value: 0; }
+.card {
+  --spot: 0;
+  background-color: var(--bg-2);
+  background-image: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%),
+                    rgba(244, 243, 240, var(--spot)), transparent 65%);
+  transition: border-color var(--dur) var(--ease),
+              background-color var(--dur) var(--ease),
+              --spot var(--dur) var(--ease),
+              translate var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
+}
+.card:hover { --spot: 0.07; background-color: var(--bg-3); }
 
 /* Corner ticks — drawing-sheet registration marks */
 .bracket::before, .bracket::after {
@@ -319,6 +339,32 @@ kbd {
   object-position: top center;
   z-index: 1;
   background: var(--bg-1);
+  transition: scale calc(var(--dur) * 2) var(--ease);
+  will-change: scale;
+}
+
+/* Hover: the frame brightens and the shot eases in a touch, like a lens
+   settling on the drawing. */
+.shot__frame { transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.shot:hover .shot__frame {
+  border-color: var(--line-4);
+  box-shadow: 0 30px 60px -36px rgba(0, 0, 0, 0.95), 0 0 0 1px var(--line);
+}
+.shot:hover .shot__frame img { scale: 1.02; }
+.shot__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent 70%, rgba(7, 7, 7, 0.55));
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+.shot:hover .shot__frame::after { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .shot:hover .shot__frame img { scale: 1; }
+  .card:hover { translate: 0; }
 }
 
 /* The placeholder is always laid down; a screenshot that loads paints over

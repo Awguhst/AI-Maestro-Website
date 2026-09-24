@@ -503,6 +503,22 @@
 .s-features__card:hover .s-features__idx {
   color: var(--ink);
 }
+.s-features__card:hover .s-features__glyph { translate: 0 -2px; }
+.s-features__glyph { transition: color var(--dur) var(--ease), translate var(--dur) var(--ease); }
+
+/* the head rule underlines itself from the left on hover */
+.s-features__top { position: relative; }
+.s-features__top::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 1px;
+  background: var(--ink);
+  scale: 0 1;
+  transform-origin: left center;
+  transition: scale var(--dur) var(--ease);
+}
+.s-features__card:hover .s-features__top::after { scale: 1 1; }
 
 /* ---- plate copy ---------------------------------------------------------- */
 
@@ -693,7 +709,12 @@
   transition: border-color var(--dur-fast) var(--ease);
 }
 
-.s-models__cell:hover { border-color: var(--line-3); }
+.s-models__cell:hover { border-color: var(--line-4); background: var(--bg-3); translate: 0 -1px; }
+.s-models__cell { transition: border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease), translate var(--dur-fast) var(--ease); }
+
+/* a model row lights up as one unit */
+.s-models__row { transition: background-color var(--dur-fast) var(--ease); }
+.s-models__row:hover { background: var(--glow); }
 
 .s-models__hint {
   display: block;
@@ -849,12 +870,26 @@
   fill: var(--ink-3);
 }
 
-/* the readout node, inverted */
-.s-canvas .wf-node--out .wf-box { fill: var(--ink); stroke: var(--ink); }
-.s-canvas .wf-node--out .wf-rule { stroke: var(--bg); stroke-opacity: 0.3; }
-.s-canvas .wf-node--out .wf-name { fill: var(--bg); }
-.s-canvas .wf-node--out .wf-sub { fill: var(--bg); fill-opacity: 0.66; }
-.s-canvas .wf-arrow { fill: none; stroke: var(--bg); stroke-opacity: 0.55; stroke-width: 1px; }
+/* the readout node: same dark plate as the others, drawn with a bright
+   outline and a faint halo so the eye lands on it without a white block */
+.s-canvas .wf-node--out .wf-box {
+  fill: var(--bg-3);
+  stroke: var(--ink);
+  filter: drop-shadow(0 0 14px rgba(244, 243, 240, 0.16));
+  animation: wf-halo 3.6s var(--ease-io) infinite alternate;
+}
+.s-canvas .wf-node--out .wf-rule { stroke: var(--line-3); }
+.s-canvas .wf-node--out .wf-name { fill: var(--ink); }
+.s-canvas .wf-node--out .wf-sub { fill: var(--ink-2); }
+.s-canvas .wf-arrow { fill: none; stroke: var(--ink); stroke-opacity: 0.7; stroke-width: 1px; }
+
+@keyframes wf-halo {
+  from { filter: drop-shadow(0 0 8px rgba(244, 243, 240, 0.08)); }
+  to   { filter: drop-shadow(0 0 18px rgba(244, 243, 240, 0.22)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-canvas .wf-node--out .wf-box { animation: none; }
+}
 
 .s-canvas .wf-wire { fill: none; stroke: var(--line-2); stroke-width: 1px; }
 
@@ -1798,7 +1833,7 @@
   gap: clamp(22px, 2.6vw, 34px);
 }
 
-.s-dl__file { text-transform: none; }
+.s-dl__fname { text-transform: none; }
 
 .s-dl__btn.btn {
   --btn-pad: clamp(1.2rem, 1.9vw, 1.6rem) clamp(1.4rem, 3.4vw, 3rem);
@@ -1840,6 +1875,11 @@
 .s-dl__cell + .s-dl__cell {
   border-left: 1px solid var(--line);
 }
+
+.s-dl__cell { transition: background-color var(--dur-fast) var(--ease); }
+.s-dl__cell:hover { background: var(--glow); }
+.s-dl__cell:hover .s-dl__k { color: var(--ink-2); }
+.s-dl__k { transition: color var(--dur-fast) var(--ease); }
 
 .s-dl__k {
   font-family: var(--font-mono);
@@ -1924,7 +1964,12 @@
   width: 22px;
   height: 1px;
   background: var(--line-2);
+  transition: width var(--dur) var(--ease), background-color var(--dur) var(--ease);
 }
+
+.s-dl__step { transition: background-color var(--dur) var(--ease); }
+.s-dl__step:hover { background: var(--glow); }
+.s-dl__step:hover .s-dl__idx::after { width: 44px; background: var(--ink); }
 
 .s-dl__step-t {
   margin-top: 1rem;

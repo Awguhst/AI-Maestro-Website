@@ -202,6 +202,22 @@
     });
   }
 
+  /* ---- spotlight --------------------------------------------------------
+     Cards carry a faint lamp (.card::after) that follows the pointer.
+     Only the two custom properties are written; CSS does the drawing. Touch
+     and keyboard users never see it, which is the intended fallback.
+     ---------------------------------------------------------------------- */
+  function initSpotlight() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    document.addEventListener('pointermove', function (e) {
+      var card = e.target.closest ? e.target.closest('.card') : null;
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left).toFixed(0) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top).toFixed(0) + 'px');
+    }, { passive: true });
+  }
+
   /* ---- footer year ------------------------------------------------------ */
   function initYear() {
     $$('[data-year]').forEach(function (el) {
@@ -216,6 +232,7 @@
     initReveal();
     initShots();
     initAccordion();
+    initSpotlight();
     initYear();
   }
 
