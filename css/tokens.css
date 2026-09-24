@@ -1,0 +1,70 @@
+/* =========================================================================
+   AI MAESTRO — design tokens
+   Technical-drawing monochrome. No hue, no build step.
+   Every value the site uses lives here. Sections may READ these; never
+   redefine :root anywhere else.
+   ========================================================================= */
+
+:root {
+  /* ---- surface ------------------------------------------------------- */
+  --bg:        #070707;   /* page                                          */
+  --bg-1:      #0b0b0b;   /* raised band                                   */
+  --bg-2:      #101010;   /* card / inset                                  */
+  --bg-3:      #151515;   /* hover on card                                 */
+
+  /* ---- ink ----------------------------------------------------------- */
+  --ink:       #f4f3f0;   /* display + primary                             */
+  --ink-2:     #a9a8a4;   /* body copy, 8.5:1                              */
+  --ink-3:     #7d7c78;   /* mono labels, 4.9:1 — smallest passing tier    */
+  --ink-4:     #4a4a47;   /* decorative only: never text under 16px        */
+
+  /* ---- hairlines (the whole visual language) ------------------------- */
+  --line:      rgba(244, 243, 240, 0.09);
+  --line-2:    rgba(244, 243, 240, 0.16);
+  --line-3:    rgba(244, 243, 240, 0.30);
+  --line-4:    rgba(244, 243, 240, 0.55);
+  --glow:      rgba(244, 243, 240, 0.05);
+
+  /* ---- type ---------------------------------------------------------- */
+  --font-display: 'Jost', 'Futura', 'Century Gothic', 'Avenir Next', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Consolas', 'SF Mono', ui-monospace, monospace;
+
+  /* fluid scale — 1.250 at small, 1.333 at large */
+  --t-mono:  0.6875rem;                                  /* 11px labels    */
+  --t-mono-l: 0.75rem;                                   /* 12px labels    */
+  --t--1:   clamp(0.8125rem, 0.79rem + 0.12vw, 0.875rem);
+  --t-0:    clamp(0.9375rem, 0.90rem + 0.18vw, 1.0625rem);
+  --t-1:    clamp(1.0625rem, 1.00rem + 0.30vw, 1.25rem);
+  --t-2:    clamp(1.375rem, 1.24rem + 0.65vw, 1.875rem);
+  --t-3:    clamp(1.75rem, 1.45rem + 1.50vw, 3rem);
+  --t-4:    clamp(2.25rem, 1.65rem + 3.00vw, 4.5rem);
+  --t-5:    clamp(2.75rem, 1.40rem + 6.75vw, 7.5rem);    /* wordmark       */
+
+  /* tracking — the signature of the mark */
+  --tr-1: 0.06em;
+  --tr-2: 0.14em;
+  --tr-3: 0.22em;
+  --tr-4: 0.38em;
+
+  /* ---- metrics ------------------------------------------------------- */
+  --maxw:    1280px;
+  --gutter:  clamp(20px, 4.5vw, 72px);
+  --sec-pad: clamp(72px, 9vw, 152px);
+  --gap:     clamp(20px, 2.4vw, 36px);
+  --radius:  0px;         /* draughtsman's corners: square, always        */
+  --grid:    88px;        /* blueprint background pitch                   */
+
+  /* ---- motion -------------------------------------------------------- */
+  --ease:    cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur:     0.55s;
+  --dur-fast: 0.22s;
+
+  color-scheme: dark;
+}
+
+/* The identity is fixed black. Honour the reduced-motion request only. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur: 0.001s; --dur-fast: 0.001s; }
+}

@@ -1,0 +1,157 @@
+# AI Maestro — download site
+
+A static, responsive one-page site for AI Maestro. Plain HTML, CSS and JavaScript:
+no build step, no bundler, no dependencies, no framework. Open it and it runs.
+
+## Preview
+
+Double-clicking `index.html` works for everything except the download link. To see it
+exactly as it will be served, run a local server from this folder:
+
+```
+python -m http.server 8000
+```
+
+then open <http://localhost:8000>.
+
+## Deploy
+
+The site is a Docker image (nginx serving the static files) and deploys to Railway from
+the GitHub repository `Awguhst/AI-Maestro-Website`:
+
+1. Railway → New Project → Deploy from GitHub repo → pick `AI-Maestro-Website`. Railway
+   reads `railway.toml`, builds `Dockerfile`, and injects `PORT`; nginx renders
+   `nginx.conf.template` with it at start-up. Nothing else to configure.
+2. Generate a domain under Settings → Networking, or attach your own.
+
+The installer is **not** in the repository (GitHub refuses files over 100 MB). It is attached
+to the GitHub release `v0.1.0` of this repository as `AIMaestro-Setup.exe`, and nginx
+answers the site's own `downloads/AIMaestro-Setup.exe` path with a redirect to
+`https://github.com/Awguhst/AI-Maestro-Website/releases/latest/download/AIMaestro-Setup.exe`.
+GitHub serves release assets of a **public** repository to anyone; while the repository is
+private, that link answers 404 for visitors. Either make the repository public, or host the
+installer elsewhere and change the redirect target in `nginx.conf.template`.
+
+To ship a new build: attach the new `AIMaestro-Setup.exe` to a new release (the
+`latest/download` link always points at the newest release), bump the version on the page
+(see "Changing the version"), commit, push. Railway redeploys on push.
+
+Any other static host still works: upload `index.html`, `css/`, `js/` and `assets/` as-is
+and provide the installer at `downloads/AIMaestro-Setup.exe` with the MIME type
+`application/octet-stream`.
+
+To try the image locally:
+
+```
+docker build -t aimaestro-site .
+docker run --rm -e PORT=9000 -p 9000:9000 aimaestro-site
+```
+
+## Layout
+
+```
+website/
+├── index.html                  the whole page
+├── css/
+│   ├── tokens.css              every colour, font, size, spacing, duration
+│   ├── base.css                reset, typography, shared components, header, footer
+│   └── sections.css            one scoped block per section
+├── js/
+│   ├── app.js                  header, nav, scroll spy, reveals, accordion, screenshot fallback
+│   └── canvas.js               the pipeline diagram animation and refusal cycle
+├── assets/
+│   ├── logo.svg                the monogram
+│   ├── favicon.svg
+│   ├── og-image.svg            social preview
+│   └── screenshots/            drop real screenshots here (see its README)
+└── downloads/
+    └── AIMaestro-Setup.exe     ← put the installer here (see its README)
+```
+
+Sections in page order: hero · features · models & data · the canvas · how it works ·
+experiments & export · system requirements · FAQ · download · footer.
+
+## Before this goes live
+
+Done on 2026-09-24:
+
+- **Installer.** `downloads/AIMaestro-Setup.exe` is the 0.1.0 build (PyInstaller bundle
+  wrapped by Inno Setup, built from `ML Studio` with `python -m aimaestro.packaging.build
+  --installer`). Every download button points at it.
+- **Screenshots.** All five slots in `assets/screenshots/` hold real captures of the app
+  (2560x1440 results panel, 1600x1200 molecule view, 2560x1600 canvas, 1920x1080 live run,
+  1920x1080 leaderboard), colour-reduced to 67-205 KB each.
+- **Social image.** `assets/og-image.png` (1200x630) is exported and the `og:image` /
+  `twitter:image` tags point at it.
+
+Still to decide:
+
+1. **Absolute URLs for the social tags.** Open Graph scrapers need absolute image URLs.
+   Once the site has a domain, change the two `og:image` / `twitter:image` values to
+   `https://<your-domain>/assets/og-image.png`.
+2. **Confirm the memory figure.** The 8 GB / 16 GB memory row in the system requirements
+   is still an estimate and carries a visible `ESTIMATE` tag. The disk-space row states the
+   measured install size.
+3. **Code signing.** The installer is unsigned; SmartScreen warns until a certificate is
+   added to the release workflow.
+
+## Changing the version
+
+Version `0.1.0` appears eleven times in `index.html`. Search for `0.1.0` and work
+through the list; every one is visible text except the first:
+
+| Where | Roughly |
+|---|---|
+| JSON-LD `softwareVersion` | line 43 |
+| Header download button | line 75 |
+| Hero download button | line 113 |
+| Hero corner plate, `Build 0.1.0` | line 144 |
+| Comment at the top of the exported-code sample | line 846 |
+| System requirements, `VERSION` row | line 946 |
+| FAQ, "Is there a macOS or Linux build?" | line 1095 |
+| Download band lede | line 1132 |
+| Download button | line 1141 |
+| Download band file plate | line 1151 |
+| Footer build column | line 1231 |
+
+The installer filename `AIMaestro-Setup.exe` appears fourteen times: five as the
+`href` on a download link, one in the JSON-LD `downloadUrl`, and eight as visible
+text (hero spec strip, requirements `INSTALLER` row and its note, the download
+button, the file plate, install step 01, the closing note, and the footer).
+
+## Design notes
+
+The visual language is a monochrome technical drawing: near-black ground, off-white ink,
+1px hairlines, square corners, wide letterspaced uppercase display type (Jost), and mono
+plate labels (IBM Plex Mono) carrying sequence numbers, exactly like an engineering title
+block. There is no colour anywhere by design — emphasis is carried by value, line weight
+and dash pattern. Success and failure states use solid versus dotted strokes rather than
+green and red.
+
+Everything is driven from `css/tokens.css`. Change a token there and the whole site
+follows. Section stylesheets only use `var(--token)` values; if you add CSS, keep to that
+rule and scope every selector under its section root class (`.s-hero`, `.s-features`, …).
+
+Fonts load from Google Fonts with system fallbacks (`Futura`/`Century Gothic` for the
+display face, `Consolas` for mono). To self-host instead, download the three families
+into `assets/fonts/`, add `@font-face` rules to the top of `tokens.css`, and delete the
+three `fonts.googleapis.com` / `fonts.gstatic.com` tags from `index.html`.
+
+## Accessibility and behaviour
+
+- Works with JavaScript disabled: all content is in the HTML, reveal animations are
+  skipped, the FAQ falls back to native `<details>` toggling, and a screenshot that
+  has been supplied still renders (it paints over the placeholder behind it). The
+  canvas section's example-picker dots are hidden without JS, since only JS drives
+  them; the first refusal example is shown instead.
+- `prefers-reduced-motion: reduce` disables the reveals, the wire pulse, the refusal
+  cycle and smooth scrolling.
+- Keyboard: a skip link, visible focus outlines throughout, real `<button>` and `<a>`
+  elements only. Opening the mobile menu moves focus into it (the drawer precedes the
+  button in the DOM), and Escape closes it and returns focus to the button.
+- Body text meets WCAG AA contrast on the black ground; `--ink-4`, the dimmest token,
+  is reserved for ornament and never used for reading text.
+- Verified with no horizontal overflow at 320, 360, 768, 1024, 1440, 1920 and 2560px,
+  and on a 400px-tall landscape phone where the nav drawer scrolls internally.
+- Figures shown inside the leaderboard and the pipeline schematic are illustrative
+  layout content, labelled as such on the page and in the table caption.

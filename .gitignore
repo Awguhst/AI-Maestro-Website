@@ -1,0 +1,4 @@
+# the installer is attached to the GitHub release, not committed (GitHub's 100 MB limit)
+downloads/*.exe
+.DS_Store
+Thumbs.db

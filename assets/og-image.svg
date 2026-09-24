@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#070707"/>
+
+  <!-- blueprint field -->
+  <g stroke="#f4f3f0" stroke-opacity="0.05" stroke-width="1">
+    <path d="M100 0V630M200 0V630M300 0V630M400 0V630M500 0V630M600 0V630M700 0V630M800 0V630M900 0V630M1000 0V630M1100 0V630"/>
+    <path d="M0 90H1200M0 180H1200M0 270H1200M0 360H1200M0 450H1200M0 540H1200"/>
+  </g>
+
+  <!-- registration marks -->
+  <g stroke="#f4f3f0" stroke-opacity="0.3" stroke-width="1">
+    <path d="M48 48h44M48 48v44"/>
+    <path d="M1152 582h-44M1152 582v-44"/>
+    <path d="M600 596v20M590 606h20"/>
+  </g>
+
+  <!-- monogram -->
+  <g transform="translate(150 235) scale(0.8)">
+    <path d="M4.5 4.5 L96 98.5 L187.5 4.5 L187.5 195.5 L154.5 162.5 L154.5 88 L96 149 L37.5 88 L37.5 162.5 L4.5 195.5 Z"
+          fill="none" stroke="#f4f3f0" stroke-width="4" stroke-linejoin="miter"/>
+  </g>
+
+  <g font-family="Futura, 'Century Gothic', Avenir, Helvetica, Arial, sans-serif" fill="#f4f3f0">
+    <text x="360" y="330" font-size="96" font-weight="300" letter-spacing="14">AI MAESTRO</text>
+    <text x="366" y="382" font-size="26" font-weight="300" letter-spacing="13" fill="#a9a8a4">VISUAL MACHINE LEARNING</text>
+  </g>
+
+  <g font-family="'IBM Plex Mono', Consolas, monospace" font-size="17" letter-spacing="3.5" fill="#7d7c78">
+    <text x="900" y="60">SYS-001 | LAUNCH CONFIG</text>
+    <text x="48" y="560">BUILD 0.1.0</text>
+    <text x="48" y="588">© ORCHESTRAL SYSTEMS</text>
+    <text x="870" y="560">MODEL: AM-01</text>
+    <text x="870" y="588">CLASS: DESKTOP ML</text>
+  </g>
+</svg>

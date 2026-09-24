@@ -1,0 +1,1992 @@
+/* =========================================================================
+   AI MAESTRO — section styles
+   Assembled from one stylesheet per section. Each block is scoped to its
+   section root class; tokens live in tokens.css, shared parts in base.css.
+   ========================================================================= */
+
+
+/* ---- 01-hero ----------------------------------------------------------- */
+/* AI MAESTRO — 01 HERO (#top)
+   Engineering title block: monogram lockup, corner plates, scroll cue. */
+
+.s-hero {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  overflow: clip;
+  padding-block: calc(72px + clamp(28px, 5vh, 60px)) clamp(104px, 13vh, 156px);
+  min-height: 100vh;
+  min-height: min(100svh, 880px);
+}
+
+.s-hero__in {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ---- lockup ------------------------------------------------------------- */
+
+.s-hero__lockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 3vw, 44px);
+  max-width: 100%;
+}
+
+.s-hero__mark {
+  flex: none;
+  height: clamp(72px, 9vw, 132px);
+  width: auto;
+  aspect-ratio: 192 / 200;
+  color: var(--ink);
+}
+
+.s-hero__mark path { stroke-width: 1.5px; }
+
+.s-hero__wordmark {
+  min-width: 0;
+  font-size: var(--t-5);
+  font-weight: 200;
+  line-height: 0.92;
+  letter-spacing: var(--tr-3);
+  margin-inline-end: calc(var(--tr-3) * -1);
+  color: var(--ink);
+}
+
+/* ---- subtitle rule ------------------------------------------------------ */
+
+.s-hero__sub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2.4vw, 30px);
+  width: 100%;
+  max-width: 100%;
+  margin-top: clamp(22px, 3vh, 38px);
+}
+
+.s-hero__sub::before,
+.s-hero__sub::after {
+  content: "";
+  flex: 0 1 clamp(26px, 8vw, 104px);
+  min-width: 0;
+  height: 1px;
+  background: var(--line-2);
+}
+
+.s-hero__sub-t {
+  font-family: var(--font-display);
+  font-size: var(--t-mono-l);
+  font-weight: 300;
+  letter-spacing: var(--tr-4);
+  margin-inline-end: calc(var(--tr-4) * -1);
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* ---- pitch -------------------------------------------------------------- */
+
+.s-hero__pitch {
+  margin-top: clamp(28px, 4vh, 46px);
+  max-width: 38ch;
+  font-size: var(--t-1);
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+/* ---- actions ------------------------------------------------------------ */
+
+.s-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 1.4vw, 18px);
+  margin-top: clamp(30px, 4.5vh, 52px);
+  max-width: 100%;
+}
+
+.s-hero__actions .btn__ico { width: 15px; height: 15px; }
+
+/* ---- spec strip --------------------------------------------------------- */
+
+.s-hero__spec {
+  --spec-gap: clamp(14px, 2vw, 24px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem var(--spec-gap);
+  margin-top: clamp(20px, 2.6vh, 30px);
+  max-width: 100%;
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-2);
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.s-hero__spec-i {
+  position: relative;
+  overflow-wrap: anywhere;
+}
+
+.s-hero__spec-i + .s-hero__spec-i::before {
+  content: "";
+  position: absolute;
+  top: 0.15em;
+  bottom: 0.15em;
+  left: calc(var(--spec-gap) / -2);
+  width: 1px;
+  background: var(--line-2);
+}
+
+.s-hero__file {
+  text-transform: none;
+  letter-spacing: var(--tr-1);
+}
+
+/* ---- smartscreen note --------------------------------------------------- */
+
+.s-hero__note {
+  margin-top: clamp(30px, 4.5vh, 50px);
+  max-width: 56ch;
+  font-size: var(--t--1);
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+.s-hero__note-plate {
+  display: inline-block;
+  margin-inline-end: 0.7em;
+  padding: 0.1em 0.62em;
+  border: 1px solid var(--line-2);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-3);
+  text-transform: uppercase;
+  color: var(--ink-3);
+  translate: 0 -1px;
+}
+
+/* ---- corner plates ------------------------------------------------------ */
+
+.s-hero__plate {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.s-hero__plate--tl,
+.s-hero__plate--tr {
+  top: calc(72px + clamp(18px, 3vh, 38px));
+  flex-direction: row;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.s-hero__plate--bl,
+.s-hero__plate--br { bottom: clamp(22px, 4vh, 44px); }
+
+.s-hero__plate--tl,
+.s-hero__plate--bl { left: var(--gutter); }
+
+.s-hero__plate--tr,
+.s-hero__plate--br {
+  right: var(--gutter);
+  align-items: flex-end;
+  text-align: right;
+}
+
+.s-hero__plate-l {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  font-weight: 400;
+  letter-spacing: var(--tr-2);
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.s-hero__plate-d {
+  color: var(--ink-4);
+  padding-inline: 0.3em;
+}
+
+.s-hero__hatch {
+  width: 48px;
+  height: 14px;
+  color: var(--ink-4);
+}
+
+.s-hero__corner {
+  display: block;
+  width: 34px;
+  height: 34px;
+  border-top: 1px solid var(--line-3);
+  border-left: 1px solid var(--line-3);
+}
+
+.s-hero__ticks {
+  display: block;
+  width: 78px;
+  height: 1px;
+  margin-top: 0.35rem;
+  background: repeating-linear-gradient(to right, var(--line-3) 0 1px, transparent 1px 6px);
+}
+
+/* ---- registration marks + ornament rules -------------------------------- */
+
+.s-hero__x { z-index: 0; opacity: 0.38; }
+.s-hero__x--a { top: 22%; left: clamp(28px, 11vw, 190px); }
+.s-hero__x--b { top: 30%; right: clamp(28px, 9vw, 160px); }
+.s-hero__x--c { bottom: 17%; left: 21%; opacity: 0.22; }
+
+.s-hero__orn {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.s-hero__orn--h {
+  top: 22%;
+  left: 0;
+  width: min(22%, 260px);
+  height: 1px;
+  background: repeating-linear-gradient(to right, var(--line) 0 3px, transparent 3px 9px);
+}
+
+.s-hero__orn--v {
+  top: 30%;
+  right: clamp(28px, 9vw, 160px);
+  width: 1px;
+  height: min(26%, 220px);
+  background: repeating-linear-gradient(to bottom, var(--line) 0 3px, transparent 3px 9px);
+}
+
+/* ---- scroll cue --------------------------------------------------------- */
+
+.s-hero__scroll {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  translate: -50% 0;
+  bottom: clamp(18px, 3.5vh, 38px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  pointer-events: none;
+}
+
+.s-hero__scroll-w {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-3);
+  margin-inline-end: calc(var(--tr-3) * -1);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.s-hero__scroll-line {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.s-hero__scroll-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 14px;
+  background: var(--ink-3);
+  animation: s-hero-travel 2.8s var(--ease-io) infinite;
+}
+
+@keyframes s-hero-travel {
+  0%        { transform: translateY(-100%); }
+  60%, 100% { transform: translateY(400%); }
+}
+
+/* ---- responsive --------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .s-hero__x--a { left: clamp(20px, 6vw, 90px); }
+  .s-hero__x--b { right: clamp(20px, 6vw, 90px); }
+  .s-hero__orn--v { right: clamp(20px, 6vw, 90px); }
+}
+
+@media (max-width: 860px) {
+  .s-hero__plate { display: none; }
+  .s-hero__orn { display: none; }
+
+  .s-hero__lockup {
+    flex-direction: column;
+    gap: clamp(18px, 3.5vh, 30px);
+  }
+
+  .s-hero__mark { height: clamp(64px, 13vw, 104px); }
+
+  .s-hero__x--a { top: 16%; left: clamp(16px, 5vw, 56px); }
+  .s-hero__x--b { top: 23%; right: clamp(16px, 5vw, 56px); }
+  .s-hero__x--c { display: none; }
+}
+
+@media (max-width: 620px) {
+  .s-hero {
+    padding-block: calc(72px + clamp(24px, 4vh, 44px)) clamp(96px, 12vh, 128px);
+  }
+
+  .s-hero__wordmark {
+    font-size: var(--t-4);
+    letter-spacing: var(--tr-3);
+    margin-inline-end: calc(var(--tr-3) * -1);
+  }
+
+  .s-hero__sub-t {
+    letter-spacing: var(--tr-3);
+    margin-inline-end: calc(var(--tr-3) * -1);
+  }
+
+  .s-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    align-self: stretch;
+    gap: 10px;
+  }
+
+  .s-hero__spec {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .s-hero__spec-i + .s-hero__spec-i::before { content: none; }
+
+  .s-hero__actions .btn {
+    --btn-pad: 1rem 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    white-space: normal;
+    text-align: center;
+    font-size: var(--t-mono);
+    letter-spacing: var(--tr-2);
+  }
+
+  .s-hero__note-plate {
+    display: block;
+    width: max-content;
+    margin: 0 auto 0.7rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .s-hero__wordmark {
+    letter-spacing: var(--tr-2);
+    margin-inline-end: calc(var(--tr-2) * -1);
+  }
+
+  .s-hero__sub-t {
+    letter-spacing: var(--tr-2);
+    margin-inline-end: calc(var(--tr-2) * -1);
+  }
+}
+
+@media (max-height: 620px) and (orientation: landscape) {
+  .s-hero {
+    min-height: auto;
+    padding-block: calc(72px + 32px) 84px;
+  }
+
+  .s-hero__scroll { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s-hero__scroll-line::after {
+    animation: none;
+    top: 0;
+    height: 100%;
+    background: var(--line-2);
+  }
+}
+
+
+/* ---- 02-features ------------------------------------------------------- */
+/* AI MAESTRO - section 02 / features (id="features", plate "CAPABILITIES")
+   Seven capability plates on a sheet grid, then the results screenshot. */
+
+.s-features .sec__lede {
+  max-width: 56ch;
+}
+
+/* ---- title-block index strip -------------------------------------------- */
+
+.s-features__index {
+  margin-bottom: clamp(20px, 2.4vw, 32px);
+}
+
+/* ---- the sheet grid ------------------------------------------------------ */
+
+.s-features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, clamp(260px, 28vw, 330px)), 1fr));
+  gap: var(--gap);
+}
+
+.s-features__item {
+  display: flex;
+  min-width: 0;
+}
+
+.s-features__card {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: clamp(14px, 1.6vw, 20px);
+}
+
+/* ---- plate head: line glyph + index -------------------------------------- */
+
+.s-features__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: clamp(14px, 1.6vw, 20px);
+  border-bottom: 1px solid var(--line);
+}
+
+.s-features__glyph {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  color: var(--ink-3);
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  shape-rendering: geometricPrecision;
+  transition: color var(--dur) var(--ease);
+}
+
+.s-features__glyph > * {
+  vector-effect: non-scaling-stroke;
+}
+
+.s-features__idx {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  font-weight: 400;
+  letter-spacing: var(--tr-3);
+  text-transform: uppercase;
+  line-height: 1;
+  padding-top: 3px;
+  color: var(--ink-3);
+  white-space: nowrap;
+  transition: color var(--dur) var(--ease);
+}
+
+.s-features__card:hover .s-features__glyph,
+.s-features__card:hover .s-features__idx {
+  color: var(--ink);
+}
+
+/* ---- plate copy ---------------------------------------------------------- */
+
+.s-features__title {
+  font-size: var(--t-1);
+  line-height: 1.22;
+  letter-spacing: var(--tr-2);
+}
+
+.s-features__copy {
+  font-size: var(--t--1);
+  line-height: 1.72;
+  color: var(--ink-2);
+  overflow-wrap: break-word;
+}
+
+/* ---- screenshot ---------------------------------------------------------- */
+
+.s-features__rule {
+  margin-top: clamp(44px, 5.5vw, 84px);
+}
+
+.s-features__shot {
+  margin-top: clamp(28px, 3.6vw, 52px);
+}
+
+.s-features .shot__ph-title,
+.s-features .shot__ph-meta {
+  overflow-wrap: anywhere;
+}
+
+.s-features .shot figcaption {
+  flex-wrap: wrap;
+}
+
+/* ---- wide plates: F.01 opens the sheet, F.07 closes it ------------------- */
+
+@media (min-width: 1080px) {
+  .s-features__item--wide {
+    grid-column: span 2;
+  }
+
+  .s-features__item--wide .s-features__card {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    column-gap: clamp(28px, 3vw, 52px);
+    align-items: start;
+  }
+
+  .s-features__item--wide .s-features__top {
+    grid-column: 1 / -1;
+  }
+
+  .s-features__item--wide .s-features__title {
+    font-size: var(--t-2);
+    line-height: 1.14;
+  }
+
+  .s-features__item--wide .s-features__copy {
+    max-width: 48ch;
+  }
+}
+
+/* ---- narrow ------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .s-features__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .s-features__glyph {
+    width: 34px;
+    height: 34px;
+  }
+
+  .s-features__index {
+    gap: 0.6rem;
+  }
+}
+
+
+/* ---- 03-models --------------------------------------------------------- */
+/* AI MAESTRO - section 03 / MODEL LIBRARY (#models)
+   Every selector scoped to .s-models. Reads tokens.css + base.css only. */
+
+/* ---- 12-column field ---------------------------------------------------- */
+
+.s-models__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(36px, 4vw, 60px) var(--gap);
+  align-items: start;
+}
+
+.s-models__col { min-width: 0; }
+.s-models__col--index { grid-column: span 7; }
+.s-models__col--data  { grid-column: span 5; }
+
+.s-models__h {
+  font-size: var(--t-1);
+  letter-spacing: var(--tr-3);
+}
+
+/* ---- A / model index ---------------------------------------------------- */
+
+.s-models__chead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: clamp(22px, 2.4vw, 32px);
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.s-models__list > .s-models__row { padding-block: 0.9rem; }
+
+.s-models__list > .s-models__row + .s-models__row {
+  border-top: 1px solid var(--line);
+}
+
+.s-models__name {
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: var(--t--1);
+  letter-spacing: var(--tr-1);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.s-models__qual {
+  display: block;
+  margin-top: 0.4em;
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-1);
+  color: var(--ink-3);
+}
+
+.s-models__tag {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-2);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink-3);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.s-models__row:hover .s-models__tag,
+.s-models__row:focus-within .s-models__tag { color: var(--ink); }
+
+.s-models__foot {
+  margin-top: 1.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+/* ---- B / data in -------------------------------------------------------- */
+
+.s-models__group + .s-models__group {
+  margin-top: clamp(24px, 2.6vw, 34px);
+  padding-top: clamp(24px, 2.6vw, 34px);
+  border-top: 1px solid var(--line);
+}
+
+.s-models__group:first-of-type { margin-top: clamp(22px, 2.4vw, 32px); }
+
+.s-models__glabel { margin-bottom: 1.05rem; }
+
+.s-models__cells {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 7.5rem), 1fr));
+  gap: 8px;
+}
+
+.s-models__cell {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-2);
+  line-height: 1.45;
+  text-transform: uppercase;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.s-models__cell:hover { border-color: var(--line-3); }
+
+.s-models__hint {
+  display: block;
+  margin-top: 0.35em;
+  letter-spacing: var(--tr-1);
+  text-transform: lowercase;
+  color: var(--ink-3);
+}
+
+/* ---- C / chemistry strip ------------------------------------------------ */
+
+.s-models__rule { margin-block: clamp(52px, 6.5vw, 96px); }
+
+.s-models__chem {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: start;
+}
+
+.s-models__hex {
+  width: 44px;
+  height: 44px;
+  margin-bottom: clamp(20px, 2.2vw, 30px);
+}
+
+.s-models__hex path,
+.s-models__hex circle {
+  fill: none;
+  stroke: var(--line-3);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.s-models__chem-copy { min-width: 0; }
+
+.s-models__chem-copy p {
+  margin-top: 1.15rem;
+  max-width: 46ch;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+/* ---- responsive --------------------------------------------------------- */
+
+@media (max-width: 860px) {
+  .s-models__col--index,
+  .s-models__col--data { grid-column: 1 / -1; }
+
+  .s-models__chem { grid-template-columns: minmax(0, 1fr); }
+  .s-models__chem-copy p { max-width: 60ch; }
+}
+
+@media (max-width: 620px) {
+  .s-models__name { font-size: var(--t-mono-l); }
+  .s-models__tag { letter-spacing: var(--tr-1); }
+  .s-models__list > .s-models__row { padding-block: 0.78rem; }
+  .s-models__cell { padding: 0.62rem 0.7rem; }
+  .s-models__cells { gap: 7px; }
+}
+
+
+/* ---- 04-canvas --------------------------------------------------------- */
+/* AI MAESTRO — section 04 "the canvas" (#workflow)
+   Pipeline schematic, refusal inspector, plates 03 and 04. */
+
+/* =========================================================================
+   1. THE SCHEMATIC PLATE
+   ========================================================================= */
+
+.s-canvas__plate {
+  position: relative;
+  border: 1px solid var(--line);
+  background: var(--bg-1);
+  padding: clamp(14px, 1.7vw, 24px);
+}
+
+.s-canvas__plate-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: clamp(10px, 1.2vw, 16px);
+  margin-bottom: clamp(12px, 1.6vw, 22px);
+  border-bottom: 1px solid var(--line);
+}
+
+.s-canvas__tag {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  font-weight: 400;
+  letter-spacing: var(--tr-2);
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.s-canvas__tag--ink { color: var(--ink); letter-spacing: var(--tr-3); }
+
+/* The hint only appears when the diagram is actually wider than its frame. */
+.s-canvas__hint { display: none; }
+
+.s-canvas__scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-3) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.s-canvas__svg {
+  width: 100%;
+  max-width: none;
+  min-width: 1020px;   /* keeps in-diagram text at 11px or larger */
+  height: auto;
+}
+
+/* ---- inside the diagram ------------------------------------------------- */
+
+/* stage groups: the lettering is part of the drawing, not copy */
+.s-canvas .wf-node { -webkit-user-select: none; user-select: none; }
+
+/* The schematic is always scaled down by its viewBox, which would render
+   every 1px stroke sub-pixel and muddy. Pin them to true device hairlines. */
+.s-canvas .s-canvas__svg [stroke],
+.s-canvas .wf-box,
+.s-canvas .wf-wire,
+.s-canvas .wf-pulse,
+.s-canvas .wf-rule,
+.s-canvas .wf-dim line,
+.s-canvas .wf-port rect,
+.s-canvas .wf-arrow path { vector-effect: non-scaling-stroke; }
+
+.s-canvas .wf-box { fill: var(--bg-2); stroke: var(--line-2); stroke-width: 1px; }
+.s-canvas .wf-rule { stroke: var(--line); stroke-width: 1px; }
+
+.s-canvas .wf-plate {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tr-2);
+  fill: var(--ink-3);
+}
+
+.s-canvas .wf-name {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: var(--tr-1);
+  fill: var(--ink);
+}
+
+.s-canvas .wf-sub {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tr-1);
+  fill: var(--ink-3);
+}
+
+/* the readout node, inverted */
+.s-canvas .wf-node--out .wf-box { fill: var(--ink); stroke: var(--ink); }
+.s-canvas .wf-node--out .wf-rule { stroke: var(--bg); stroke-opacity: 0.3; }
+.s-canvas .wf-node--out .wf-name { fill: var(--bg); }
+.s-canvas .wf-node--out .wf-sub { fill: var(--bg); fill-opacity: 0.66; }
+.s-canvas .wf-arrow { fill: none; stroke: var(--bg); stroke-opacity: 0.55; stroke-width: 1px; }
+
+.s-canvas .wf-wire { fill: none; stroke: var(--line-2); stroke-width: 1px; }
+
+.s-canvas .wf-pulse {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1px;
+  stroke-dasharray: 30 806;   /* one 30-unit signal on the 836-unit run of wire */
+}
+
+.s-canvas .wf-port { fill: var(--bg); stroke: var(--line-3); stroke-width: 1px; }
+.s-canvas .wf-port--inv { fill: var(--ink); stroke: var(--ink); }
+
+.s-canvas .wf-dim { fill: none; stroke: var(--line-2); stroke-width: 1px; }
+
+.s-canvas .wf-dim-t,
+.s-canvas .wf-block-t {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tr-3);
+  fill: var(--ink-3);
+}
+
+/* the refused wire — dotted, and crossed out at the input it was denied */
+.s-canvas .wf-ref {
+  fill: none;
+  stroke: var(--line-3);
+  stroke-width: 1px;
+  stroke-dasharray: 2 6;
+}
+
+.s-canvas .wf-ref-t {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tr-2);
+  fill: var(--ink-3);
+}
+
+.s-canvas .wf-x-box { fill: var(--bg); stroke: var(--line-3); stroke-width: 1px; }
+.s-canvas .wf-x-l { stroke: var(--ink-2); stroke-width: 1px; }
+
+/* =========================================================================
+   2. THE REFUSAL INSPECTOR
+   ========================================================================= */
+
+.s-canvas__refuse {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  gap: var(--gap) clamp(32px, 4.5vw, 84px);
+  align-items: start;
+  margin-top: clamp(52px, 7vw, 108px);
+}
+
+.s-canvas__kicker {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-3);
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 1.1rem;
+}
+
+.s-canvas__h3 { font-size: var(--t-2); }
+
+.s-canvas__copy {
+  margin-top: 1.25rem;
+  font-size: var(--t-0);
+  color: var(--ink-2);
+  max-width: 46ch;
+}
+
+.s-canvas__panel-wrap { min-width: 0; }
+
+.s-canvas__panel {
+  position: relative;
+  border: 1px solid var(--line-2);
+  background: var(--bg-2);
+}
+
+.s-canvas__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: clamp(10px, 1.1vw, 14px) clamp(13px, 1.6vw, 20px);
+  background: var(--bg-3);
+  border-bottom: 1px solid var(--line-2);
+}
+
+.s-canvas__bar-x {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1px;
+}
+
+.s-canvas__bar-t {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-2);
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.s-canvas__bar-idx {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-1);
+  color: var(--ink-2);   /* the bar ground is --bg-3, where --ink-3 fails AA */
+  white-space: nowrap;
+}
+
+.s-canvas__body { padding: clamp(16px, 2vw, 28px) clamp(13px, 1.6vw, 20px) clamp(12px, 1.4vw, 18px); }
+
+/* All examples occupy one grid cell, so the panel is as tall as the tallest
+   of them and never jumps as they rotate. */
+.s-canvas__list {
+  display: grid;
+  min-height: 158px;
+}
+
+.s-canvas__item {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) var(--ease), visibility var(--dur) var(--ease);
+}
+
+.s-canvas__item.is-active { opacity: 1; visibility: visible; }
+
+.s-canvas__dl {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 0.6rem 1rem;
+  align-items: baseline;
+}
+
+.s-canvas__dt {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-2);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.s-canvas__dd {
+  font-size: var(--t--1);
+  line-height: 1.6;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.s-canvas__dd--wire {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-l);
+  letter-spacing: var(--tr-2);
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.s-canvas__arw { color: var(--ink-3); padding-inline: 0.15em; }
+
+.s-canvas__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: clamp(16px, 2vw, 24px);
+  padding-top: clamp(10px, 1.2vw, 14px);
+  border-top: 1px solid var(--line);
+}
+
+/* The pickers are driven entirely by canvas.js; without it they would be
+   focusable buttons promising something they cannot do. */
+.s-canvas__dots { display: none; gap: 2px; margin-right: -6px; }
+.s-canvas__panel.is-live .s-canvas__dots { display: flex; }
+
+.s-canvas__dot {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+}
+
+.s-canvas__dot::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--line-3);
+  transition: background-color var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease);
+}
+
+.s-canvas__dot:hover::before { border-color: var(--ink); }
+.s-canvas__dot[aria-pressed="true"]::before { background: var(--ink); border-color: var(--ink); }
+
+.s-canvas__note {
+  margin-top: clamp(14px, 1.6vw, 20px);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-l);
+  letter-spacing: var(--tr-1);
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+/* =========================================================================
+   3. PLATES
+   ========================================================================= */
+
+.s-canvas__strap { margin-top: clamp(52px, 7vw, 108px); }
+
+.s-canvas__shots {
+  display: grid;
+  grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr);
+  gap: var(--gap);
+  align-items: start;
+  margin-top: clamp(22px, 2.8vw, 38px);
+}
+
+/* =========================================================================
+   RESPONSIVE
+   ========================================================================= */
+
+@media (max-width: 1140px) {
+  .s-canvas__hint { display: inline; }
+}
+
+@media (max-width: 1024px) {
+  .s-canvas__refuse { gap: var(--gap) clamp(28px, 3.5vw, 48px); }
+}
+
+@media (max-width: 860px) {
+  .s-canvas__refuse { grid-template-columns: minmax(0, 1fr); gap: clamp(32px, 5vw, 48px); }
+  .s-canvas__copy { max-width: 58ch; }
+  .s-canvas__shots { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 620px) {
+  .s-canvas__plate { padding: 12px; }
+  .s-canvas__plate-head { padding-bottom: 10px; margin-bottom: 12px; }
+  .s-canvas__tag--ink { letter-spacing: var(--tr-2); }
+
+  .s-canvas__dl { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
+  .s-canvas__dt:not(:first-of-type) { margin-top: 1rem; }
+  .s-canvas__list { min-height: 214px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No travelling signal: every wire simply reads as drawn. */
+  .s-canvas .wf-pulse { stroke-dasharray: none; stroke: var(--line-4); }
+  .s-canvas__item { transition: none; }
+}
+
+
+/* ---- 05-steps ---------------------------------------------------------- */
+/* AI MAESTRO — section 05 "how" · OPERATION
+   Three-step sequence: connector rule, registration ticks, spec readouts. */
+
+.s-steps__list {
+  position: relative;
+  display: grid;
+  gap: 0;
+}
+
+.s-steps__item {
+  position: relative;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto;
+  border-left: 1px solid var(--line);
+  padding: clamp(30px, 6vw, 44px) 0 clamp(30px, 6vw, 44px) clamp(20px, 5vw, 34px);
+}
+
+/* The mono readout is the last row, so it sits on one baseline across all
+   three steps however long the copy above it runs. */
+.s-steps__item > .s-steps__spec { align-self: end; }
+
+/* Registration ticks: the connector crosses a 13px mark at every station.
+   Horizontal marks on the vertical rule (stacked), flipped at >= 860px. */
+.s-steps__item::before,
+.s-steps__list::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -6px;
+  width: 13px;
+  height: 1px;
+  background: var(--line-3);
+  pointer-events: none;
+}
+
+.s-steps__list::after { top: auto; bottom: 0; }
+
+/* ---- the mark: numeral + 1px pictogram --------------------------------- */
+
+.s-steps__mark { line-height: 0; }
+
+.s-steps__num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(var(--t-3), 6.5vw, var(--t-4));
+  font-weight: 200;
+  line-height: 0.82;
+  letter-spacing: var(--tr-3);
+  color: var(--ink-4);
+  transition: color var(--dur) var(--ease);
+}
+
+.s-steps__ico {
+  width: 36px;
+  height: 20px;
+  margin-top: clamp(18px, 2vw, 26px);
+  fill: none;
+  stroke: var(--line-3);
+  stroke-width: 1;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  transition: stroke var(--dur) var(--ease);
+}
+
+.s-steps__item:hover .s-steps__num { color: var(--ink-3); }
+.s-steps__item:hover .s-steps__ico { stroke: var(--line-4); }
+
+/* ---- copy --------------------------------------------------------------- */
+
+.s-steps__name {
+  margin-top: clamp(22px, 2.4vw, 32px);
+  font-size: var(--t-2);
+  font-weight: 300;
+  letter-spacing: var(--tr-3);
+  color: var(--ink);
+}
+
+.s-steps__copy {
+  margin-top: 1rem;
+  max-width: 40ch;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.s-steps__spec {
+  margin-top: clamp(22px, 2.4vw, 32px);
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+  letter-spacing: var(--tr-2);
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+/* ---- three columns, connector turns horizontal -------------------------- */
+
+@media (min-width: 860px) {
+  .s-steps__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--gap);
+  }
+
+  .s-steps__list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--line);
+    pointer-events: none;
+  }
+
+  .s-steps__item {
+    border-left: 0;
+    padding: clamp(34px, 3.4vw, 52px) 0 0;
+  }
+
+  .s-steps__item::before,
+  .s-steps__list::after {
+    top: -6px;
+    bottom: auto;
+    left: calc(var(--gap) / -2);
+    width: 1px;
+    height: 13px;
+  }
+
+  .s-steps__item:first-child::before { left: 0; }
+  .s-steps__list::after { left: auto; right: 0; }
+
+  .s-steps__copy { max-width: 34ch; }
+}
+
+
+/* ---- 06-export --------------------------------------------------------- */
+/* AI MAESTRO — section 06 "export" (id="export", plate 05 / PORTABILITY)
+   Left: experiments + leaderboard table and FIG. 05. Right: plain-code export panel. */
+
+/* ---- two-column sheet ---------------------------------------------------- */
+.s-export .ex-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(30px, 3.6vw, 56px);
+  align-items: start;
+}
+
+.s-export .ex-col { min-width: 0; }
+
+.s-export .ex-col--b {
+  padding-left: clamp(28px, 3.4vw, 56px);
+  border-left: 1px solid var(--line);
+}
+
+.s-export .ex-xh { top: -7px; right: -7px; }
+
+/* ---- column type --------------------------------------------------------- */
+.s-export .ex-h {
+  font-size: var(--t-1);
+  font-weight: 300;
+  letter-spacing: var(--tr-3);
+  color: var(--ink);
+}
+
+.s-export .ex-p {
+  margin-top: 1.15rem;
+  max-width: 46ch;
+  font-size: var(--t--1);
+  color: var(--ink-2);
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+/* ---- leaderboard table --------------------------------------------------- */
+.s-export .ex-tw {
+  margin-top: clamp(26px, 3vw, 38px);
+  overflow-x: auto;
+  border-top: 1px solid var(--line-2);
+}
+
+.s-export .ex-table {
+  width: 100%;
+  min-width: 22rem;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-l);
+  font-weight: 400;
+  letter-spacing: var(--tr-1);
+}
+
+.s-export .ex-table th,
+.s-export .ex-table td {
+  padding: 0.72rem 1.25rem 0.72rem 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.s-export .ex-table thead th {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-3);
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom-color: var(--line-2);
+}
+
+.s-export .ex-table thead th:first-child,
+.s-export .ex-table tbody th { padding-left: 1.25rem; }
+
+.s-export .ex-table tbody th,
+.s-export .ex-table tbody td { color: var(--ink-2); }
+
+.s-export .ex-table tbody th { position: relative; }
+
+.s-export .ex-table tbody tr:last-child th,
+.s-export .ex-table tbody tr:last-child td { border-bottom: 0; }
+
+.s-export .ex-num {
+  text-align: right;
+  padding-right: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Best run: value weight, never colour. */
+.s-export .ex-best th,
+.s-export .ex-best td { color: var(--ink); }
+
+.s-export .ex-mark {
+  position: absolute;
+  left: 0;
+  top: 0.72rem;
+  color: var(--ink);
+}
+
+.s-export .ex-legend__note { color: var(--ink-3); }
+
+.s-export .ex-legend { margin-top: 0.9rem; }
+
+/* ---- figure -------------------------------------------------------------- */
+.s-export .shot { margin-top: clamp(30px, 3.6vw, 46px); }
+
+/* ---- code panel ---------------------------------------------------------- */
+.s-export .ex-code {
+  position: relative;
+  min-width: 0;
+  margin-top: clamp(26px, 3vw, 38px);
+  border: 1px solid var(--line-2);
+  background: var(--bg-2);
+}
+
+.s-export .ex-code__bar {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.s-export .ex-file {
+  padding: 0.7rem 1.1rem;
+  border-right: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-1);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.s-export .ex-file--on { border-bottom: 1px solid var(--ink); }
+
+.s-export .ex-file--on {
+  color: var(--ink);
+  background: var(--bg-3);
+}
+
+.s-export .ex-pre {
+  margin: 0;
+  padding: clamp(18px, 2vw, 26px);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--t--1);
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0;
+  color: var(--ink-2);
+  tab-size: 4;
+}
+
+.s-export .ex-pre code {
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  white-space: pre;
+}
+
+/* Comments only — no syntax colouring anywhere on this site. */
+.s-export .ex-cm { color: var(--ink-3); }
+
+.s-export .ex-note { margin-top: 1rem; }
+
+/* ---- responsive ---------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .s-export .ex-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+
+  .s-export .ex-col--b {
+    margin-top: clamp(44px, 6vw, 64px);
+    padding-top: clamp(40px, 5vw, 56px);
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .s-export .ex-xh { display: none; }
+  .s-export .ex-p { max-width: 62ch; }
+}
+
+@media (max-width: 620px) {
+  .s-export .ex-table th,
+  .s-export .ex-table td { padding-right: 1rem; }
+
+  .s-export .ex-file { flex: 1 1 auto; text-align: center; }
+  .s-export .ex-file:last-child { border-right: 0; }
+}
+
+
+/* ---- 07-requirements --------------------------------------------------- */
+/* AI MAESTRO — section 07 / requirements (id="requirements", plate 06 SPECIFICATION)
+   Spec sheet: dotted-leader rows, two columns from 860px, SmartScreen note, ghost CTA. */
+
+/* ---- sheet shell -------------------------------------------------------- */
+
+.s-req .req__sheet {
+  position: relative;
+}
+
+.s-req .req__mark { opacity: 0.45; }
+
+.s-req .req__mark--tl { top: -7px; left: -7px; }
+.s-req .req__mark--br { bottom: -7px; right: -7px; }
+
+.s-req .req__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  padding-bottom: 0.9rem;
+}
+
+/* ---- rows --------------------------------------------------------------- */
+
+.s-req .req__list {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border-top: 1px solid var(--line);
+}
+
+.s-req .req__row {
+  gap: 0.9rem;
+  padding-block: clamp(13px, 1.3vw, 18px);
+  border-bottom: 1px solid var(--line);
+}
+
+.s-req .req__k {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  font-weight: 400;
+  letter-spacing: var(--tr-3);
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+.s-req .req__est {
+  display: inline-block;
+  margin-inline-start: 0.6em;
+  padding: 0.05em 0.5em;
+  border: 1px solid var(--line-2);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-2);
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.s-req .req__v {
+  flex: 0 1 auto;
+  min-width: 0;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: var(--t--1);
+  letter-spacing: var(--tr-1);
+  line-height: 1.6;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.s-req .req__v code {
+  font-size: 1em;
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+
+/* ---- note --------------------------------------------------------------- */
+
+.s-req .req__note {
+  display: grid;
+  justify-items: start;
+  gap: 1.05rem;
+  max-width: 74ch;
+  margin-top: clamp(30px, 3.4vw, 48px);
+}
+
+.s-req .req__note-t {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  font-weight: 400;
+  letter-spacing: var(--tr-3);
+  line-height: 1;
+  color: var(--ink);
+  border: 1px solid var(--line-2);
+  padding: 0.45rem 0.75rem;
+}
+
+.s-req .req__note-p {
+  font-size: var(--t--1);
+  line-height: 1.8;
+  color: var(--ink-2);
+  max-width: 64ch;
+}
+
+.s-req .req__note-p code {
+  color: var(--ink);
+  letter-spacing: var(--tr-1);
+  overflow-wrap: anywhere;
+}
+
+/* ---- cta ---------------------------------------------------------------- */
+
+.s-req .req__cta {
+  margin-top: clamp(26px, 2.8vw, 40px);
+}
+
+/* ---- two-column sheet --------------------------------------------------- */
+
+@media (min-width: 860px) {
+  .s-req .req__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(32px, 4.5vw, 72px);
+  }
+
+  .s-req .req__list::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    left: 50%;
+    width: 1px;
+    background: var(--line);
+    pointer-events: none;
+  }
+}
+
+/* ---- stacked rows: the leader collapses ---------------------------------- */
+
+@media (max-width: 620px) {
+  .s-req .req__row { display: block; }
+  .s-req .req__row::before { display: none; }
+  .s-req .req__v { text-align: left; margin-top: 0.35rem; }
+}
+
+
+/* ---- 08-faq ------------------------------------------------------------ */
+/* AI MAESTRO — section 08 / FAQ ("07 / QUERIES")
+   Sticky plate head at >=1024px; hairline accordion driven by app.js. */
+
+.s-faq {
+  --faq-num: 1.15rem;                            /* index column width      */
+  --faq-gap: clamp(0.9rem, 1.8vw, 1.25rem);      /* index -> question gap   */
+  --faq-ind: calc(var(--faq-num) + var(--faq-gap));
+}
+
+/* ---- layout ------------------------------------------------------------ */
+
+.s-faq__grid {
+  display: grid;
+  align-items: start;
+  gap: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.s-faq .sec__head { margin-bottom: 0; }
+
+.s-faq__rule { margin-top: clamp(1.75rem, 3vw, 2.5rem); }
+
+.s-faq__meta {
+  margin-top: 1rem;
+  max-width: 20rem;
+}
+
+@media (min-width: 1024px) {
+  .s-faq__grid {
+    grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+    column-gap: clamp(3rem, 6vw, 6.5rem);
+  }
+  .s-faq__head {
+    position: sticky;
+    top: 104px;
+  }
+}
+
+/* ---- list -------------------------------------------------------------- */
+
+.s-faq__list {
+  counter-reset: faq;
+  border-bottom: 1px solid var(--line);
+}
+
+.s-faq__item { counter-increment: faq; }
+
+.s-faq__q {
+  display: flex;
+  align-items: center;
+  gap: var(--faq-gap);
+  padding-block: clamp(1.15rem, 2.2vw, 1.6rem);
+  border-top: 1px solid var(--line);
+  cursor: pointer;
+  list-style: none;
+}
+
+.s-faq__q::-webkit-details-marker { display: none; }
+
+/* plate index — 01 … 10 */
+.s-faq__q::before {
+  content: counter(faq, decimal-leading-zero);
+  flex: none;
+  width: var(--faq-num);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  font-weight: 400;
+  letter-spacing: var(--tr-1);
+  line-height: 1;
+  color: var(--ink-3);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.s-faq__q-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: var(--t-1);
+  font-weight: 300;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+
+/* ---- plus / minus ------------------------------------------------------ */
+
+.s-faq__ico {
+  position: relative;
+  flex: none;
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.s-faq__ico::before,
+.s-faq__ico::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--ink-3);
+  translate: 0 -50%;
+  transition: rotate var(--dur) var(--ease),
+              background-color var(--dur-fast) var(--ease);
+}
+
+.s-faq__ico::after { rotate: 90deg; }
+
+.s-faq__q:hover::before,
+.s-faq__q:focus-visible::before { color: var(--ink); }
+
+.s-faq__q:hover .s-faq__ico::before,
+.s-faq__q:hover .s-faq__ico::after,
+.s-faq__q:focus-visible .s-faq__ico::before,
+.s-faq__q:focus-visible .s-faq__ico::after { background: var(--ink); }
+
+.s-faq__item[open] .s-faq__q::before { color: var(--ink); }
+
+.s-faq__item[open] .s-faq__ico::before,
+.s-faq__item[open] .s-faq__ico::after { background: var(--ink); }
+
+.s-faq__item[open] .s-faq__ico::after { rotate: 0deg; }
+
+/* ---- panel ------------------------------------------------------------- */
+/* app.js animates this element's height: it carries no box of its own. */
+
+.s-faq__panel {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+.s-faq__a {
+  padding-top: 0;
+  padding-right: clamp(0rem, 2.5vw, 2.75rem);
+  padding-bottom: clamp(1.4rem, 2.6vw, 2rem);
+  padding-left: var(--faq-ind);
+  max-width: 66ch;
+}
+
+.s-faq__a p {
+  font-size: var(--t-0);
+  line-height: 1.75;
+  color: var(--ink-2);
+  overflow-wrap: break-word;
+}
+
+.s-faq__a p + p { margin-top: 0.8rem; }
+
+/* ---- small screens ----------------------------------------------------- */
+
+@media (max-width: 620px) {
+  .s-faq { --faq-ind: 0rem; }
+  .s-faq__q::before { display: none; }
+}
+
+
+/* ---- 09-download ------------------------------------------------------- */
+/* AI MAESTRO — section 09 / download (id="download", plate 08 ACQUISITION)
+   Closing acquisition band: poster CTA, file plate, three-step install sequence. */
+
+/* ---- band shell --------------------------------------------------------- */
+
+.s-dl {
+  overflow-x: clip;
+}
+
+.s-dl__in {
+  position: relative;
+}
+
+/* Corner plates — title-block stamps in the band's padding. */
+.s-dl__plate {
+  position: absolute;
+  z-index: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.s-dl__plate--tl {
+  top: calc(-1 * clamp(30px, 3.6vw, 58px));
+  left: var(--gutter);
+}
+
+.s-dl__plate--br {
+  bottom: calc(-1 * clamp(30px, 3.6vw, 58px));
+  right: var(--gutter);
+}
+
+/* Registration marks, centred on the sheet rails. */
+.s-dl__xh--a {
+  top: calc(-1 * clamp(28px, 3.4vw, 54px));
+  right: calc(var(--gutter) - 7px);
+}
+
+.s-dl__xh--b {
+  bottom: calc(-1 * clamp(28px, 3.4vw, 54px));
+  left: calc(var(--gutter) - 7px);
+}
+
+/* ---- primary call to action --------------------------------------------- */
+
+.s-dl__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(22px, 2.6vw, 34px);
+}
+
+.s-dl__file { text-transform: none; }
+
+.s-dl__btn.btn {
+  --btn-pad: clamp(1.2rem, 1.9vw, 1.6rem) clamp(1.4rem, 3.4vw, 3rem);
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55em 0.85em;
+  font-size: var(--t-mono-l);
+  line-height: 1.5;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.s-dl__btn .btn__ico {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---- file plate ---------------------------------------------------------- */
+
+.s-dl__file {
+  width: min(100%, 760px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--line-2);
+}
+
+.s-dl__cell {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.2rem 0.55rem;
+  padding: 0.85rem 0.8rem;
+}
+
+.s-dl__cell + .s-dl__cell {
+  border-left: 1px solid var(--line);
+}
+
+.s-dl__k {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-3);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.s-dl__k::after { content: ':'; }
+
+.s-dl__v {
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--tr-1);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+/* ---- install sequence ---------------------------------------------------- */
+
+.s-dl__seq-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 22px);
+  margin-top: clamp(56px, 7vw, 104px);
+}
+
+.s-dl__seq-label::before,
+.s-dl__seq-label::after {
+  content: '';
+  flex: 0 0 auto;
+  width: clamp(24px, 7vw, 76px);
+  height: 1px;
+  background: var(--line-2);
+}
+
+.s-dl__seq {
+  position: relative;
+  width: min(100%, 1000px);
+  margin: clamp(22px, 2.6vw, 34px) auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--line);
+}
+
+.s-dl__step {
+  position: relative;
+  min-width: 0;
+  padding: clamp(26px, 2.8vw, 40px);
+}
+
+.s-dl__step + .s-dl__step {
+  border-left: 1px solid var(--line);
+}
+
+/* Arrow tick riding the rule between two steps. */
+.s-dl__step + .s-dl__step::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid var(--line-3);
+  border-right: 1px solid var(--line-3);
+  translate: -50% -50%;
+  rotate: 45deg;
+}
+
+.s-dl__idx {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.s-dl__idx::after {
+  content: '';
+  flex: 0 0 auto;
+  width: 22px;
+  height: 1px;
+  background: var(--line-2);
+}
+
+.s-dl__step-t {
+  margin-top: 1rem;
+  font-size: var(--t-1);
+}
+
+.s-dl__step-b {
+  margin-top: 0.7rem;
+  font-size: var(--t--1);
+  line-height: 1.7;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+/* ---- closing note -------------------------------------------------------- */
+
+.s-dl__rule {
+  width: min(100%, 420px);
+  margin: clamp(48px, 6vw, 76px) auto 0;
+}
+
+.s-dl__note {
+  margin: clamp(22px, 2.6vw, 32px) auto 0;
+  max-width: 62ch;
+  font-size: var(--t--1);
+  line-height: 1.75;
+  color: var(--ink-2);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* ---- responsive ---------------------------------------------------------- */
+
+@media (max-width: 860px) {
+  .s-dl__plate { display: none; }
+
+  .s-dl__file { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .s-dl__cell + .s-dl__cell { border-left: 0; }
+  .s-dl__cell:nth-child(2n) { border-left: 1px solid var(--line); }
+  .s-dl__cell:nth-child(n + 3) { border-top: 1px solid var(--line); }
+
+  .s-dl__seq { grid-template-columns: minmax(0, 1fr); }
+  .s-dl__step + .s-dl__step { border-left: 0; border-top: 1px solid var(--line); }
+  .s-dl__step + .s-dl__step::before {
+    top: 0;
+    left: 50%;
+    rotate: 135deg;
+  }
+}
+
+@media (max-width: 620px) {
+  .s-dl__xh { display: none; }
+}
+
+@media (max-width: 520px) {
+  .s-dl__btn.btn {
+    --btn-pad: 1.15rem 1.1rem;
+    width: 100%;
+  }
+
+  .s-dl__file { grid-template-columns: minmax(0, 1fr); }
+  .s-dl__cell:nth-child(2n) { border-left: 0; }
+  .s-dl__cell:nth-child(n + 2) { border-top: 1px solid var(--line); }
+  .s-dl__cell { justify-content: flex-start; padding: 0.75rem 1rem; }
+}

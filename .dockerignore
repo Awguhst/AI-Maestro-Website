@@ -1,0 +1,5 @@
+.git
+downloads/
+README.md
+Dockerfile
+.dockerignore
