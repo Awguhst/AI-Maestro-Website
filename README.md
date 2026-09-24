@@ -24,17 +24,20 @@ the GitHub repository `Awguhst/AI-Maestro-Website`:
    `nginx.conf.template` with it at start-up. Nothing else to configure.
 2. Generate a domain under Settings → Networking, or attach your own.
 
-The installer is **not** in the repository (GitHub refuses files over 100 MB). It is attached
-to the GitHub release `v0.1.0` of this repository as `AIMaestro-Setup.exe`, and nginx
-answers the site's own `downloads/AIMaestro-Setup.exe` path with a redirect to
-`https://github.com/Awguhst/AI-Maestro-Website/releases/latest/download/AIMaestro-Setup.exe`.
+The installers are **not** in the repository (GitHub refuses files over 100 MB). Both are
+attached to the GitHub release `v0.1.0` of this repository, `AIMaestro-Setup.exe` (standard,
+PyTorch on the CPU) and `AIMaestro-Setup-CUDA.exe` (CUDA PyTorch for NVIDIA GPUs), and nginx
+answers the site's own `downloads/<file>` paths with a redirect to
+`https://github.com/Awguhst/AI-Maestro-Website/releases/latest/download/<file>`.
 GitHub serves release assets of a **public** repository to anyone; while the repository is
 private, that link answers 404 for visitors. Either make the repository public, or host the
 installer elsewhere and change the redirect target in `nginx.conf.template`.
 
-To ship a new build: attach the new `AIMaestro-Setup.exe` to a new release (the
-`latest/download` link always points at the newest release), bump the version on the page
-(see "Changing the version"), commit, push. Railway redeploys on push.
+To ship a new build: attach both new installers to a new release (the `latest/download`
+links always point at the newest release), bump the version on the page (see "Changing the
+version"), update the two download and installed sizes in the file plate and the disk-space
+row (`data-size` / `data-installed` attributes mark them), commit, push. Railway redeploys
+on push.
 
 Any other static host still works: upload `index.html`, `css/`, `js/` and `assets/` as-is
 and provide the installer at `downloads/AIMaestro-Setup.exe` with the MIME type

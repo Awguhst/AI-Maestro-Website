@@ -14,6 +14,9 @@ server {
     location = /downloads/AIMaestro-Setup.exe {
         return 302 https://github.com/Awguhst/AI-Maestro-Website/releases/latest/download/AIMaestro-Setup.exe;
     }
+    location = /downloads/AIMaestro-Setup-CUDA.exe {
+        return 302 https://github.com/Awguhst/AI-Maestro-Website/releases/latest/download/AIMaestro-Setup-CUDA.exe;
+    }
 
     location ~* \.(png|jpg|svg|ico|woff2?)$ {
         expires 30d;

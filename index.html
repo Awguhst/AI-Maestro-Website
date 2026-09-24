@@ -112,13 +112,19 @@
         </svg>
         Download for Windows <span class="btn__sub">v0.1.0</span>
       </a>
+      <a class="btn btn--ghost" href="downloads/AIMaestro-Setup-CUDA.exe" download>
+        <svg class="btn__ico" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" aria-hidden="true">
+          <path d="M7 1v8.5M3.5 6.5 7 10l3.5-3.5M1.5 12.5h11"/>
+        </svg>
+        CUDA build <span class="btn__sub">NVIDIA GPU</span>
+      </a>
       <a class="btn btn--ghost" href="#how">See how it works</a>
     </div>
 
     <ul class="s-hero__spec reveal" style="--d:.30s" role="list">
-      <li class="s-hero__spec-i"><span class="s-hero__file">AIMaestro-Setup.exe</span></li>
-      <li class="s-hero__spec-i">Windows 10 &amp; 11</li>
-      <li class="s-hero__spec-i">64-bit</li>
+      <li class="s-hero__spec-i"><span class="s-hero__file">AIMaestro-Setup.exe</span> trains on the CPU</li>
+      <li class="s-hero__spec-i"><span class="s-hero__file">AIMaestro-Setup-CUDA.exe</span> uses an NVIDIA GPU</li>
+      <li class="s-hero__spec-i">Windows 10 &amp; 11, 64-bit</li>
     </ul>
 
     <p class="s-hero__note reveal" style="--d:.36s">
@@ -924,12 +930,12 @@ print("accuracy:", round(acc, 3))</code></pre>
 
         <div class="req__row leader reveal">
           <dt class="req__k">Disk space</dt>
-          <dd class="req__v">1 GB for the application; up to 4 GB more if you add the optional PyTorch runtime</dd>
+          <dd class="req__v"><span data-installed="standard">&mdash;</span> for the standard build, <span data-installed="cuda">&mdash;</span> for the CUDA build</dd>
         </div>
 
         <div class="req__row leader reveal">
           <dt class="req__k">GPU</dt>
-          <dd class="req__v">Optional &ndash; a supported GPU accelerates PyTorch MLP and graph neural network training</dd>
+          <dd class="req__v">Optional &ndash; the CUDA build trains the PyTorch MLP and the graph neural networks on an NVIDIA GPU (driver 570 or newer); the standard build trains them on the CPU</dd>
         </div>
 
         <div class="req__row leader reveal">
@@ -939,7 +945,7 @@ print("accuracy:", round(acc, 3))</code></pre>
 
         <div class="req__row leader reveal">
           <dt class="req__k">Installer</dt>
-          <dd class="req__v"><code>AIMaestro-Setup.exe</code></dd>
+          <dd class="req__v"><code>AIMaestro-Setup.exe</code> &middot; <code>AIMaestro-Setup-CUDA.exe</code></dd>
         </div>
 
         <div class="req__row leader reveal">
@@ -1069,7 +1075,7 @@ print("accuracy:", round(acc, 3))</code></pre>
           </summary>
           <div class="s-faq__panel" data-panel>
             <div class="s-faq__a">
-              <p>Yes, for the PyTorch MLP and the graph neural networks. GPU usage is shown live during a run, next to the CPU meter.</p>
+              <p>Yes, with the CUDA build: it ships a CUDA PyTorch and trains the MLP and the graph neural networks on an NVIDIA GPU (driver 570 or newer). The standard build ships the CPU PyTorch and trains the same models on the CPU. Both show CPU and GPU usage live during a run.</p>
             </div>
           </div>
         </details>
@@ -1130,7 +1136,7 @@ print("accuracy:", round(acc, 3))</code></pre>
     <header class="sec__head sec__head--center reveal">
       <p class="eyebrow"><span class="eyebrow__idx">08</span> ACQUISITION</p>
       <h2 class="sec__title" id="download-t">Download AI Maestro</h2>
-      <p class="sec__lede">One installer for 64-bit Windows 10 and 11. Version 0.1.0, an early build.</p>
+      <p class="sec__lede">Two installers for 64-bit Windows 10 and 11, version 0.1.0. The standard build trains on the CPU; the CUDA build uses an NVIDIA GPU for the PyTorch MLP and the graph neural networks. Everything else is identical, and both carry every runtime the node library needs.</p>
     </header>
 
     <div class="s-dl__cta reveal">
@@ -1139,25 +1145,47 @@ print("accuracy:", round(acc, 3))</code></pre>
         <svg class="btn__ico" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" aria-hidden="true">
           <path d="M7 1v8.5M3.5 6.5 7 10l3.5-3.5M1.5 12.5h11"/>
         </svg>
-        Download <span class="s-dl__fname">AIMaestro-Setup.exe</span> <span class="btn__sub">v0.1.0</span>
+        Download <span class="s-dl__fname">AIMaestro-Setup.exe</span> <span class="btn__sub">standard &middot; v0.1.0</span>
+      </a>
+      <a class="btn btn--ghost s-dl__btn s-dl__btn--cuda" href="downloads/AIMaestro-Setup-CUDA.exe" download>
+        <svg class="btn__ico" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" aria-hidden="true">
+          <path d="M7 1v8.5M3.5 6.5 7 10l3.5-3.5M1.5 12.5h11"/>
+        </svg>
+        Download <span class="s-dl__fname">AIMaestro-Setup-CUDA.exe</span> <span class="btn__sub">CUDA &middot; v0.1.0</span>
       </a>
 
       <dl class="s-dl__file">
         <div class="s-dl__cell">
-          <dt class="s-dl__k">File</dt>
+          <dt class="s-dl__k">Standard</dt>
           <dd class="s-dl__v">AIMaestro-Setup.exe</dd>
         </div>
         <div class="s-dl__cell">
-          <dt class="s-dl__k">Version</dt>
-          <dd class="s-dl__v">0.1.0</dd>
+          <dt class="s-dl__k">Trains on</dt>
+          <dd class="s-dl__v">CPU</dd>
         </div>
         <div class="s-dl__cell">
-          <dt class="s-dl__k">Platform</dt>
-          <dd class="s-dl__v">Windows 10/11</dd>
+          <dt class="s-dl__k">Download</dt>
+          <dd class="s-dl__v" data-size="standard">&mdash;</dd>
         </div>
         <div class="s-dl__cell">
-          <dt class="s-dl__k">Arch</dt>
-          <dd class="s-dl__v">x64</dd>
+          <dt class="s-dl__k">Installed</dt>
+          <dd class="s-dl__v" data-installed="standard">&mdash;</dd>
+        </div>
+        <div class="s-dl__cell">
+          <dt class="s-dl__k">CUDA</dt>
+          <dd class="s-dl__v">AIMaestro-Setup-CUDA.exe</dd>
+        </div>
+        <div class="s-dl__cell">
+          <dt class="s-dl__k">Trains on</dt>
+          <dd class="s-dl__v">NVIDIA GPU</dd>
+        </div>
+        <div class="s-dl__cell">
+          <dt class="s-dl__k">Download</dt>
+          <dd class="s-dl__v" data-size="cuda">&mdash;</dd>
+        </div>
+        <div class="s-dl__cell">
+          <dt class="s-dl__k">Installed</dt>
+          <dd class="s-dl__v" data-installed="cuda">&mdash;</dd>
         </div>
       </dl>
 
@@ -1170,7 +1198,7 @@ print("accuracy:", round(acc, 3))</code></pre>
       <li class="s-dl__step reveal">
         <p class="mono mono--l mono--ink s-dl__idx">01</p>
         <h3 class="s-dl__step-t">Download</h3>
-        <p class="s-dl__step-b">Save AIMaestro-Setup.exe and open it.</p>
+        <p class="s-dl__step-b">Save AIMaestro-Setup.exe, or AIMaestro-Setup-CUDA.exe for an NVIDIA GPU, and open it.</p>
       </li>
 
       <li class="s-dl__step reveal">
