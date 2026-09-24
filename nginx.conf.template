@@ -1,9 +1,45 @@
+# Railway terminates TLS and forwards the original scheme; behind no proxy, $scheme.
+map $http_x_forwarded_proto $site_scheme {
+    default $scheme;
+    https   https;
+    http    http;
+}
+
 server {
     listen ${PORT};
     listen [::]:${PORT};
     server_name _;
     root /usr/share/nginx/html;
     index index.html;
+
+    # ---- search indexing: the site's own URL is whatever host serves it ----
+    set $site_url "$site_scheme://$host";
+
+    location = /robots.txt {
+        default_type text/plain;
+        return 200 "User-agent: *\nAllow: /\nDisallow: /downloads/\nSitemap: $site_url/sitemap.xml\n";
+    }
+    location = /sitemap.xml {
+        default_type application/xml;
+        return 200 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url><loc>$site_url/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>\n</urlset>\n";
+    }
+
+    # the page's canonical URL, social image and Search Console tag are filled in here,
+    # so the HTML never hardcodes a domain. GOOGLE_SITE_VERIFICATION is a Railway variable.
+    location = / {
+        try_files /index.html =404;
+        add_header Link "<$site_url/>; rel=\"canonical\"" always;
+        add_header X-Content-Type-Options nosniff always;
+        add_header X-Frame-Options SAMEORIGIN always;
+        add_header Referrer-Policy strict-origin-when-cross-origin always;
+        add_header Cache-Control "public, max-age=300, must-revalidate";
+        sub_filter_once off;
+        sub_filter_types text/html;
+        sub_filter '<link rel="canonical" href="/">' '<link rel="canonical" href="$site_url/">';
+        sub_filter 'content="assets/og-image.png"' 'content="$site_url/assets/og-image.png"';
+        sub_filter '<meta name="google-site-verification" content="">' '<meta name="google-site-verification" content="${GOOGLE_SITE_VERIFICATION}">';
+    }
+    location = /index.html { return 301 $site_url/; }
 
     gzip on;
     gzip_types text/css application/javascript image/svg+xml application/json;
