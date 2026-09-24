@@ -709,7 +709,7 @@
   transition: border-color var(--dur-fast) var(--ease);
 }
 
-.s-models__cell:hover { border-color: var(--line-4); background: var(--bg-3); translate: 0 -1px; }
+.s-models__cell:hover { border-color: var(--line-4); background: var(--bg-3); }
 .s-models__cell { transition: border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease), translate var(--dur-fast) var(--ease); }
 
 /* a model row lights up as one unit */
@@ -873,7 +873,7 @@
 /* the readout node: same dark plate as the others, drawn with a bright
    outline and a faint halo so the eye lands on it without a white block */
 .s-canvas .wf-node--out .wf-box {
-  fill: var(--bg-3);
+  fill: var(--bg);
   stroke: var(--ink);
   filter: drop-shadow(0 0 14px rgba(244, 243, 240, 0.16));
   animation: wf-halo 3.6s var(--ease-io) infinite alternate;

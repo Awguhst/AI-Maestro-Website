@@ -197,7 +197,7 @@ kbd {
 }
 
 .btn:hover::before, .btn:focus-visible::before { scale: 1 1; }
-.btn:hover, .btn:focus-visible { color: var(--bg); border-color: var(--ink); translate: 0 -1px; box-shadow: 0 12px 28px -16px rgba(244, 243, 240, 0.35); }
+.btn:hover, .btn:focus-visible { color: var(--bg); border-color: var(--ink); box-shadow: 0 12px 28px -16px rgba(244, 243, 240, 0.35); }
 .btn { transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease), translate var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease); }
 
 .btn__ico { width: 14px; height: 14px; flex: none; }
@@ -242,9 +242,10 @@ kbd {
   border: 1px solid var(--line);
   padding: clamp(24px, 2.6vw, 38px);
 }
+/* No movement on hover: an element that shifts away from the pointer flickers
+   in and out of :hover at its edge. The lift is carried by shadow alone. */
 .card:hover {
   border-color: var(--line-3);
-  translate: 0 -3px;
   box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--line);
 }
 
@@ -364,7 +365,6 @@ kbd {
 .shot:hover .shot__frame::after { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .shot:hover .shot__frame img { scale: 1; }
-  .card:hover { translate: 0; }
 }
 
 /* The placeholder is always laid down; a screenshot that loads paints over
