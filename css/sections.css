@@ -611,7 +611,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: clamp(36px, 4vw, 60px) var(--gap);
-  align-items: start;
+  align-items: stretch;
 }
 
 .s-models__col { min-width: 0; }
@@ -625,11 +625,15 @@
 
 /* ---- A / model index ---------------------------------------------------- */
 
-.s-models__chead {
-  display: flex;
+.s-models__chead, .s-models__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
   align-items: baseline;
-  justify-content: space-between;
   gap: 1rem;
+  padding-inline: 12px;
+}
+
+.s-models__chead {
   margin-top: clamp(22px, 2.4vw, 32px);
   padding-bottom: 0.7rem;
   border-bottom: 1px solid var(--line-2);
@@ -647,7 +651,7 @@
   font-size: var(--t--1);
   letter-spacing: var(--tr-1);
   color: var(--ink);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .s-models__qual {
@@ -659,12 +663,12 @@
 }
 
 .s-models__tag {
-  flex: none;
   font-family: var(--font-mono);
   font-size: var(--t-mono);
   letter-spacing: var(--tr-2);
   text-transform: uppercase;
   white-space: nowrap;
+  text-align: right;
   color: var(--ink-3);
   transition: color var(--dur-fast) var(--ease);
 }
@@ -673,9 +677,14 @@
 .s-models__row:focus-within .s-models__tag { color: var(--ink); }
 
 .s-models__foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .6rem 1rem;
   margin-top: 1.4rem;
   padding-top: 1rem;
   border-top: 1px solid var(--line);
+  line-height: 1.7;
 }
 
 /* ---- B / data in -------------------------------------------------------- */
@@ -692,11 +701,17 @@
 
 .s-models__cells {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 7.5rem), 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
 }
 
 .s-models__cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 0;
+  min-height: 54px;
   padding: 0.7rem 0.8rem;
   border: 1px solid var(--line);
   font-family: var(--font-mono);
@@ -705,16 +720,24 @@
   line-height: 1.45;
   text-transform: uppercase;
   color: var(--ink);
-  overflow-wrap: anywhere;
-  transition: border-color var(--dur-fast) var(--ease);
+  overflow-wrap: break-word;
+  border-radius: var(--radius);
+  background-color: rgba(255, 250, 237, .012);
+  background-image: var(--surface);
+  box-shadow: var(--edge);
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
-.s-models__cell:hover { border-color: var(--line-4); background: var(--bg-3); }
-.s-models__cell { transition: border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease), translate var(--dur-fast) var(--ease); }
+.s-models__cell--wide { grid-column: 1 / -1; }
+.s-models__cell:hover {
+  border-color: var(--line-3);
+  background-color: rgba(255, 250, 237, .035);
+  box-shadow: var(--edge), 0 4px 12px -8px rgba(0, 0, 0, .5);
+}
 
 /* a model row lights up as one unit */
-.s-models__row { transition: background-color var(--dur-fast) var(--ease); }
-.s-models__row:hover { background: var(--glow); }
+.s-models__row { transition: background-color var(--dur) var(--ease); }
+.s-models__row:hover { background-color: rgba(255, 250, 237, .025); }
 
 .s-models__hint {
   display: block;
@@ -769,6 +792,8 @@
 }
 
 @media (max-width: 620px) {
+  .s-models__col.card { padding: 20px 16px; }
+  .s-models__chead, .s-models__row { gap: .75rem; padding-inline: 0; }
   .s-models__name { font-size: var(--t-mono-l); }
   .s-models__tag { letter-spacing: var(--tr-1); }
   .s-models__list > .s-models__row { padding-block: 0.78rem; }
@@ -2048,14 +2073,14 @@
 }
 
 /* Surface depth without moving the interactive hit areas. */
-.s-models__cell, .s-workflow__plate, .s-workflow__panel,
+.s-workflow__plate, .s-workflow__panel,
 .s-export .ex-code, .s-dl__file, .s-dl__seq {
   border-radius: var(--radius);
   box-shadow: var(--edge), var(--shadow);
   background-image: var(--surface);
   transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background-color var(--dur) var(--ease);
 }
-.s-models__cell:hover, .s-workflow__panel:focus-within {
+.s-workflow__panel:focus-within {
   border-color: var(--line-3);
   box-shadow: var(--edge), var(--shadow-hover);
 }
