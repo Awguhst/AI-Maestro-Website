@@ -19,11 +19,15 @@
   --ink-4:     #4a4a47;   /* decorative only: never text under 16px        */
 
   /* ---- hairlines (the whole visual language) ------------------------- */
-  --line:      rgba(244, 243, 240, 0.09);
-  --line-2:    rgba(244, 243, 240, 0.16);
-  --line-3:    rgba(244, 243, 240, 0.30);
-  --line-4:    rgba(244, 243, 240, 0.55);
+  --line:      rgba(218, 215, 206, 0.10);
+  --line-2:    rgba(218, 215, 206, 0.18);
+  --line-3:    rgba(218, 215, 206, 0.30);
+  --line-4:    rgba(218, 215, 206, 0.44);
   --glow:      rgba(244, 243, 240, 0.05);
+  --surface:   linear-gradient(145deg, rgba(255, 250, 237, 0.025), transparent 60%);
+  --shadow:    0 3px 8px rgba(0, 0, 0, 0.18), 0 16px 40px -24px rgba(0, 0, 0, 0.7);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.24), 0 28px 64px -28px rgba(0, 0, 0, 0.85);
+  --edge:      inset 0 1px 0 rgba(255, 250, 237, 0.035);
 
   /* ---- type ---------------------------------------------------------- */
   --font-display: 'Jost', 'Futura', 'Century Gothic', 'Avenir Next', system-ui, sans-serif;
@@ -52,14 +56,14 @@
   --gutter:  clamp(20px, 4.5vw, 72px);
   --sec-pad: clamp(72px, 9vw, 152px);
   --gap:     clamp(20px, 2.4vw, 36px);
-  --radius:  0px;         /* draughtsman's corners: square, always        */
+  --radius:  4px;         /* a small finish on otherwise precise edges    */
   --grid:    88px;        /* blueprint background pitch                   */
 
   /* ---- motion -------------------------------------------------------- */
-  --ease:    cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease:    cubic-bezier(0.22, 1, 0.36, 1);
   --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur:     0.55s;
-  --dur-fast: 0.22s;
+  --dur:     0.48s;
+  --dur-fast: 0.24s;
 
   color-scheme: dark;
 }

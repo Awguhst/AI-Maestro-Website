@@ -2030,8 +2030,12 @@
   .s-dl__cell { justify-content: flex-start; padding: 0.75rem 1rem; }
 }
 
-/* Product preview */
-.s-hero { min-height: 0; padding-block: 132px 104px; }
+/* Text-led introduction with space for the brand and primary action. */
+.s-hero {
+  min-height: min(88svh, 780px);
+  padding-block: 156px 112px;
+  background: radial-gradient(ellipse 60% 65% at 50% 36%, rgba(228, 221, 204, .035), transparent 80%);
+}
 .s-hero__wordmark { font-size: clamp(38px, 7vw, 88px); }
 .s-hero__mark { height: clamp(54px, 6.6vw, 92px); }
 .s-hero__sub { margin-top: 24px; }
@@ -2039,12 +2043,34 @@
 .s-hero__actions { margin-top: 28px; }
 .s-hero__note { margin-top: 18px; }
 .s-hero__note a { text-decoration: underline; text-underline-offset: 3px; }
-.s-hero__preview { width: 100%; margin-top: 48px; text-align: left; }
-.s-hero__preview .shot__frame { box-shadow: 0 24px 90px rgba(0,0,0,.5); }
 .s-hero__scroll { display: none; }
 .s-workflow__shots { grid-template-columns: minmax(0, 1fr); gap: 40px; }
 @media (max-width: 620px) {
-  .s-hero { padding-block: 118px 90px; }
-  .s-hero__preview { margin-top: 32px; }
-  .s-hero__preview figcaption { flex-wrap: wrap; gap: 6px; }
+  .s-hero { min-height: 0; padding-block: 126px 88px; }
+}
+
+/* Surface depth without moving the interactive hit areas. */
+.s-models__cell, .s-workflow__plate, .s-workflow__panel,
+.s-export .ex-code, .s-dl__file, .s-dl__seq {
+  border-radius: var(--radius);
+  box-shadow: var(--edge), var(--shadow);
+  background-image: var(--surface);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.s-models__cell:hover, .s-workflow__panel:focus-within {
+  border-color: var(--line-3);
+  box-shadow: var(--edge), var(--shadow-hover);
+}
+.s-faq__item { transition: background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.s-faq__item:hover, .s-faq__item[open] {
+  background: rgba(244, 243, 240, .018);
+  box-shadow: inset 2px 0 0 var(--line-2);
+}
+.s-workflow .wf-pulse {
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 3px rgba(244, 243, 240, .3));
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-workflow .wf-pulse { opacity: 0 !important; }
 }

@@ -111,8 +111,9 @@ Done on 2026-09-24:
 - **Installer.** `downloads/AIMaestro-Setup.exe` is the 0.1.0 build (PyInstaller bundle
   wrapped by Inno Setup, built from `ML Studio` with `python -m aimaestro.packaging.build
   --installer`). Every download button points at it.
-- **Screenshots.** Refreshed on 2026-09-27 with six WebP captures of the current app: a
-  workflow, the datasets page, scores, charts, experiment history, and molecular structures.
+- **Screenshots.** Five WebP captures show the workflow, datasets page, diagnostic
+  plots, experiment history, and molecular structures. The introduction is text-led.
+  The overview capture remains available for the social preview.
   `scripts/capture_app.py` recreates them in an isolated temporary project using actual
   local training. See `assets/screenshots/README.md` for the capture sizes and commands.
 - **Social image.** `assets/og-image.png` (1200x630) is exported and the `og:image` /

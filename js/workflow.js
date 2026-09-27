@@ -22,7 +22,8 @@
 
   if (!pulse && !items.length) return;
 
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduced = motion.matches;
 
   /* The pulse rides one continuous path from the data node's output to the
      results node's input (182 -> 1018 in viewBox units). It runs behind the
@@ -30,7 +31,7 @@
      far side. A dash pattern per wire segment would restart at every subpath
      and make all five gaps blink in unison instead. */
   var WIRE = 836;
-  var SWEEP = 3400;   /* ms : data to results                               */
+  var SWEEP = 4400;   /* ms : data to results                               */
   var HOLD = 5600;    /* ms : how long one refusal example stays up         */
 
   /* ---- the refusal inspector -------------------------------------------- */
@@ -69,21 +70,22 @@
     });
   }
 
-  /* Reduced motion: first example stays put, diagram stays drawn. */
-  if (reduced) return;
-
   /* ---- one loop drives both --------------------------------------------- */
   var running = false;
   var frame = 0;
-  var t0 = 0;
+  var elapsed = 0;
+  var previous = 0;
   var tSwap = 0;
 
   function tick(now) {
     if (!running) return;
+    elapsed += Math.min(now - previous, 64);
+    previous = now;
 
     if (pulse) {
-      var p = ((now - t0) % SWEEP) / SWEEP;
+      var p = (elapsed % SWEEP) / SWEEP;
       pulse.style.strokeDashoffset = (-p * WIRE).toFixed(2) + 'px';
+      pulse.style.opacity = Math.min(p / .08, (1 - p) / .08, 1).toFixed(3);
     }
 
     if (held) { tSwap = now; }
@@ -99,7 +101,7 @@
   function start() {
     if (running) return;
     running = true;
-    t0 = tSwap = window.performance ? performance.now() : 0;
+    previous = tSwap = performance.now();
     frame = window.requestAnimationFrame(tick);
   }
 
@@ -112,7 +114,7 @@
   /* ---- run only while the section is on screen and the tab is in front --- */
   var onScreen = false;
   var sync = function () {
-    if (onScreen && !document.hidden) start(); else stop();
+    if (onScreen && !document.hidden && !reduced) start(); else stop();
   };
 
   if ('IntersectionObserver' in window) {
@@ -127,4 +129,5 @@
   }
 
   document.addEventListener('visibilitychange', sync);
+  motion.addEventListener('change', function (e) { reduced = e.matches; sync(); });
 })();

@@ -6,7 +6,9 @@
 (function () {
   'use strict';
 
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduced = motion.matches;
+  motion.addEventListener('change', function (e) { reduced = e.matches; });
   var $  = function (sel, ctx) { return (ctx || document).querySelector(sel); };
   var $$ = function (sel, ctx) {
     return Array.prototype.slice.call((ctx || document).querySelectorAll(sel));
@@ -118,6 +120,11 @@
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
 
     items.forEach(function (el) { io.observe(el); });
+    motion.addEventListener('change', function () {
+      if (!reduced) return;
+      items.forEach(function (el) { el.classList.add('is-in'); });
+      io.disconnect();
+    });
   }
 
   /* ---- screenshot placeholders -----------------------------------------
@@ -177,79 +184,107 @@
      Markup contract: [data-accordion] > details > summary + [data-panel]
      ---------------------------------------------------------------------- */
   function initAccordion() {
-    /* Animate height from -> to, then hand back to CSS. The forced reflow is
-       load-bearing: without it both style writes land in one frame and the
-       browser interpolates from `auto`, which is not animatable, so no
-       transition starts and transitionend never fires. The timeout is the
-       safety net for an interrupted or suppressed transition. */
-    var animate = function (panel, from, to, after) {
-      if (panel._settle) panel._settle();
-
-      panel.style.height = from + 'px';
-      void panel.offsetHeight;
-      panel.style.height = to + 'px';
-
-      var timer = 0;
-      var settle = function (e) {
-        if (e && e.target !== panel) return;
-        panel.removeEventListener('transitionend', settle);
-        clearTimeout(timer);
-        panel._settle = null;
-        if (after) after();
-        panel.style.height = '';
-      };
-
-      panel._settle = settle;
-      timer = setTimeout(settle, 600);
-      panel.addEventListener('transitionend', settle);
-    };
-
     $$('[data-accordion]').forEach(function (group) {
-      var single = group.getAttribute('data-accordion') === 'single';
       var items = $$('details', group);
-
-      var shut = function (d) {
-        var panel = $('[data-panel]', d);
-        if (!panel || reduced) { d.open = false; return; }
-        animate(panel, panel.scrollHeight, 0, function () { d.open = false; });
-      };
-
       items.forEach(function (d) {
         var summary = $('summary', d);
         var panel = $('[data-panel]', d);
         if (!summary || !panel) return;
+        var desired = d.open;
+        var animation = null;
 
+        // Read the current rendered height before canceling an interrupted tween.
+        // Rapid open/close clicks reverse from that exact position.
+        var setOpen = function (open) {
+          var from = panel.getBoundingClientRect().height;
+          desired = open;
+          if (animation) { animation.cancel(); animation = null; }
+          if (reduced || !panel.animate) { d.open = open; return; }
+          d.open = true;
+          animation = panel.animate([
+            { height: from + 'px' },
+            { height: (open ? panel.scrollHeight : 0) + 'px' }
+          ], { duration: 420, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
+          animation.onfinish = function () { d.open = desired; animation = null; };
+        };
+        d._setExpanded = setOpen;
         summary.addEventListener('click', function (e) {
           e.preventDefault();
-
-          if (d.open) { shut(d); return; }
-
-          if (single) {
-            items.forEach(function (other) { if (other !== d && other.open) shut(other); });
+          var opening = !desired;
+          if (opening && group.getAttribute('data-accordion') === 'single') {
+            items.forEach(function (other) {
+              if (other !== d && other.open && other._setExpanded) other._setExpanded(false);
+            });
           }
-
-          d.open = true;
-          if (reduced) return;
-          animate(panel, 0, panel.scrollHeight, null);
+          setOpen(opening);
+        });
+        motion.addEventListener('change', function () {
+          if (reduced && animation) {
+            animation.cancel();
+            animation = null;
+            d.open = desired;
+          }
         });
       });
     });
   }
 
-  /* ---- spotlight --------------------------------------------------------
-     Cards carry a faint lamp (.card::after) that follows the pointer.
-     Only the two custom properties are written; CSS does the drawing. Touch
-     and keyboard users never see it, which is the intended fallback.
-     ---------------------------------------------------------------------- */
+  /* Pointer lighting eases toward the cursor, with at most one write per frame.
+     The loop sleeps when settled, off the card, or in a hidden tab. */
   function initSpotlight() {
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    var pointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    var active = null;
+    var frame = 0;
+    var previous = 0;
+    var x = 0, y = 0, targetX = 0, targetY = 0, rect;
+    function stop() {
+      if (frame) cancelAnimationFrame(frame);
+      frame = 0;
+      previous = 0;
+      active = null;
+    }
+    function tick(now) {
+      frame = 0;
+      if (!active || reduced || document.hidden) return;
+      var dt = previous ? Math.min(now - previous, 64) : 16;
+      previous = now;
+      var blend = 1 - Math.exp(-dt / 70);
+      x += (targetX - x) * blend;
+      y += (targetY - y) * blend;
+      active.style.setProperty('--mx', x.toFixed(1) + 'px');
+      active.style.setProperty('--my', y.toFixed(1) + 'px');
+      if (Math.abs(targetX - x) + Math.abs(targetY - y) > 0.15) {
+        frame = requestAnimationFrame(tick);
+      } else { previous = 0; }
+    }
     document.addEventListener('pointermove', function (e) {
+      if (reduced || !pointer.matches || e.pointerType === 'touch') return;
       var card = e.target.closest ? e.target.closest('.card') : null;
-      if (!card) return;
-      var r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - r.left).toFixed(0) + 'px');
-      card.style.setProperty('--my', (e.clientY - r.top).toFixed(0) + 'px');
+      if (!card) { stop(); return; }
+      if (card !== active) {
+        stop();
+        active = card;
+        rect = card.getBoundingClientRect();
+        x = e.clientX - rect.left;
+        y = e.clientY - rect.top;
+      }
+      targetX = e.clientX - rect.left;
+      targetY = e.clientY - rect.top;
+      if (!frame) frame = requestAnimationFrame(tick);
     }, { passive: true });
+    document.documentElement.addEventListener('pointerleave', stop);
+    window.addEventListener('scroll', stop, { passive: true, capture: true });
+    window.addEventListener('resize', stop, { passive: true });
+    window.addEventListener('blur', stop);
+    document.addEventListener('visibilitychange', stop);
+    pointer.addEventListener('change', stop);
+    motion.addEventListener('change', function () {
+      stop();
+      $$('.card').forEach(function (card) {
+        card.style.removeProperty('--mx');
+        card.style.removeProperty('--my');
+      });
+    });
   }
 
   /* ---- footer year ------------------------------------------------------ */

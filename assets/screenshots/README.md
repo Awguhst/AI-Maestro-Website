@@ -6,7 +6,7 @@ the captures. The screenshots retain their native colours and use WebP quality 9
 
 | File | Pixels | Content |
 | --- | --- | --- |
-| `overview.webp` | 2160 x 1440 | Completed random forest workflow and test metrics |
+| `overview.webp` | 2160 x 1440 | Completed random forest workflow and test metrics, retained for the social image only |
 | `results.webp` | 2160 x 1440 | The same run, scrolled to diagnostic plots |
 | `workflow.webp` | 2160 x 900 | Five connected nodes before training |
 | `datasets.webp` | 2160 x 1350 | Project datasets and the built-in dataset catalog |
