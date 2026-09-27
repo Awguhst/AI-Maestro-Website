@@ -35,7 +35,7 @@ installer elsewhere and change the redirect target in `nginx.conf.template`.
 
 To ship a new build: attach both new installers to a new release (the `latest/download`
 links always point at the newest release), bump the version on the page (see "Changing the
-version"), update the two download and installed sizes in the file plate and the disk-space
+version"), update the two download and installed sizes in the build cards and the disk-space
 row (`data-size` / `data-installed` attributes mark them), commit, push. Railway redeploys
 on push.
 
