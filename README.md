@@ -1,4 +1,4 @@
-# AI Maestro — download site
+# AI Maestro : download site
 
 A static, responsive one-page site for AI Maestro. Plain HTML, CSS and JavaScript:
 no build step, no bundler, no dependencies, no framework. Open it and it runs.
@@ -89,18 +89,19 @@ website/
 │   ├── base.css                reset, typography, shared components, header, footer
 │   └── sections.css            one scoped block per section
 ├── js/
-│   ├── app.js                  header, nav, scroll spy, reveals, accordion, screenshot fallback
-│   └── canvas.js               the pipeline diagram animation and refusal cycle
+│   ├── app.js                  header, nav, reveals, accordion, screenshot viewer and fallback
+│   └── workflow.js             the pipeline diagram animation and refusal cycle
 ├── assets/
 │   ├── logo.svg                the monogram
 │   ├── favicon.svg
 │   ├── og-image.svg            social preview
-│   └── screenshots/            drop real screenshots here (see its README)
+│   └── screenshots/            current app captures (see its README)
 └── downloads/
-    └── AIMaestro-Setup.exe     ← put the installer here (see its README)
+    ├── AIMaestro-Setup.exe      standard installer (see its README)
+    └── AIMaestro-Setup-CUDA.exe CUDA installer
 ```
 
-Sections in page order: hero · features · models & data · the canvas · how it works ·
+Sections in page order: hero · features · models & data · the workflow editor · how it works ·
 experiments & export · system requirements · FAQ · download · footer.
 
 ## Before this goes live
@@ -110,9 +111,10 @@ Done on 2026-09-24:
 - **Installer.** `downloads/AIMaestro-Setup.exe` is the 0.1.0 build (PyInstaller bundle
   wrapped by Inno Setup, built from `ML Studio` with `python -m aimaestro.packaging.build
   --installer`). Every download button points at it.
-- **Screenshots.** All five slots in `assets/screenshots/` hold real captures of the app
-  (2560x1440 results panel, 1600x1200 molecule view, 2560x1600 canvas, 1920x1080 live run,
-  1920x1080 leaderboard), colour-reduced to 67-205 KB each.
+- **Screenshots.** Refreshed on 2026-09-27 with six WebP captures of the current app: a
+  workflow, the datasets page, scores, charts, experiment history, and molecular structures.
+  `scripts/capture_app.py` recreates them in an isolated temporary project using actual
+  local training. See `assets/screenshots/README.md` for the capture sizes and commands.
 - **Social image.** `assets/og-image.png` (1200x630) is exported and the `og:image` /
   `twitter:image` tags point at it.
 
@@ -156,8 +158,8 @@ button, the file plate, install step 01, the closing note, and the footer).
 The visual language is a monochrome technical drawing: near-black ground, off-white ink,
 1px hairlines, square corners, wide letterspaced uppercase display type (Jost), and mono
 plate labels (IBM Plex Mono) carrying sequence numbers, exactly like an engineering title
-block. There is no colour anywhere by design — emphasis is carried by value, line weight
-and dash pattern. Success and failure states use solid versus dotted strokes rather than
+block. The site chrome is monochrome; the app captures retain their original colours.
+Emphasis in the site chrome is carried by value, line weight and dash pattern. Success and failure states use solid versus dotted strokes rather than
 green and red.
 
 Everything is driven from `css/tokens.css`. Change a token there and the whole site
@@ -174,7 +176,7 @@ three `fonts.googleapis.com` / `fonts.gstatic.com` tags from `index.html`.
 - Works with JavaScript disabled: all content is in the HTML, reveal animations are
   skipped, the FAQ falls back to native `<details>` toggling, and a screenshot that
   has been supplied still renders (it paints over the placeholder behind it). The
-  canvas section's example-picker dots are hidden without JS, since only JS drives
+  workflow section's example-picker dots are hidden without JS, since only JS drives
   them; the first refusal example is shown instead.
 - `prefers-reduced-motion: reduce` disables the reveals, the wire pulse, the refusal
   cycle and smooth scrolling.
@@ -187,3 +189,18 @@ three `fonts.googleapis.com` / `fonts.gstatic.com` tags from `index.html`.
   and on a 400px-tall landscape phone where the nav drawer scrolls internally.
 - Figures shown inside the leaderboard and the pipeline schematic are illustrative
   layout content, labelled as such on the page and in the table caption.
+
+
+## Check the refreshed site
+
+Serve the repository, then use Playwright (an optional development dependency):
+
+```
+node scripts/check_site.cjs http://127.0.0.1:8765
+```
+
+`BROWSER_CHANNEL=msedge` or `chrome` selects an installed browser; the default is
+Playwright Chromium. The check covers three widths, images, copy, anchor links,
+modal focus and Escape, mobile navigation, FAQ, no-JavaScript links, and image
+failure. Visual previews are written to the system temporary directory, or to
+`SCREENSHOT_DIR` when set. The site still needs no build step or runtime packages.

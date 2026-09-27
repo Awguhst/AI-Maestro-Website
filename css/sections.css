@@ -1,12 +1,12 @@
 /* =========================================================================
-   AI MAESTRO — section styles
+   AI MAESTRO : section styles
    Assembled from one stylesheet per section. Each block is scoped to its
    section root class; tokens live in tokens.css, shared parts in base.css.
    ========================================================================= */
 
 
 /* ---- 01-hero ----------------------------------------------------------- */
-/* AI MAESTRO — 01 HERO (#top)
+/* AI MAESTRO : 01 HERO (#top)
    Engineering title block: monogram lockup, corner plates, scroll cue. */
 
 .s-hero {
@@ -777,22 +777,22 @@
 }
 
 
-/* ---- 04-canvas --------------------------------------------------------- */
-/* AI MAESTRO — section 04 "the canvas" (#workflow)
+/* ---- 04-workflow --------------------------------------------------------- */
+/* AI MAESTRO : section 04 "the workflow editor" (#workflow)
    Pipeline schematic, refusal inspector, plates 03 and 04. */
 
 /* =========================================================================
    1. THE SCHEMATIC PLATE
    ========================================================================= */
 
-.s-canvas__plate {
+.s-workflow__plate {
   position: relative;
   border: 1px solid var(--line);
   background: var(--bg-1);
   padding: clamp(14px, 1.7vw, 24px);
 }
 
-.s-canvas__plate-head {
+.s-workflow__plate-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -802,7 +802,7 @@
   border-bottom: 1px solid var(--line);
 }
 
-.s-canvas__tag {
+.s-workflow__tag {
   font-family: var(--font-mono);
   font-size: var(--t-mono);
   font-weight: 400;
@@ -812,12 +812,12 @@
   white-space: nowrap;
 }
 
-.s-canvas__tag--ink { color: var(--ink); letter-spacing: var(--tr-3); }
+.s-workflow__tag--ink { color: var(--ink); letter-spacing: var(--tr-3); }
 
 /* The hint only appears when the diagram is actually wider than its frame. */
-.s-canvas__hint { display: none; }
+.s-workflow__hint { display: none; }
 
-.s-canvas__scroll {
+.s-workflow__scroll {
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: thin;
@@ -825,7 +825,7 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.s-canvas__svg {
+.s-workflow__svg {
   width: 100%;
   max-width: none;
   min-width: 1020px;   /* keeps in-diagram text at 11px or larger */
@@ -835,36 +835,36 @@
 /* ---- inside the diagram ------------------------------------------------- */
 
 /* stage groups: the lettering is part of the drawing, not copy */
-.s-canvas .wf-node { -webkit-user-select: none; user-select: none; }
+.s-workflow .wf-node { -webkit-user-select: none; user-select: none; }
 
 /* The schematic is always scaled down by its viewBox, which would render
    every 1px stroke sub-pixel and muddy. Pin them to true device hairlines. */
-.s-canvas .s-canvas__svg [stroke],
-.s-canvas .wf-box,
-.s-canvas .wf-wire,
-.s-canvas .wf-pulse,
-.s-canvas .wf-rule,
-.s-canvas .wf-dim line,
-.s-canvas .wf-port rect,
-.s-canvas .wf-arrow path { vector-effect: non-scaling-stroke; }
+.s-workflow .s-workflow__svg [stroke],
+.s-workflow .wf-box,
+.s-workflow .wf-wire,
+.s-workflow .wf-pulse,
+.s-workflow .wf-rule,
+.s-workflow .wf-dim line,
+.s-workflow .wf-port rect,
+.s-workflow .wf-arrow path { vector-effect: non-scaling-stroke; }
 
-.s-canvas .wf-box { fill: var(--bg-2); stroke: var(--line-2); stroke-width: 1px; }
-.s-canvas .wf-rule { stroke: var(--line); stroke-width: 1px; }
+.s-workflow .wf-box { fill: var(--bg-2); stroke: var(--line-2); stroke-width: 1px; }
+.s-workflow .wf-rule { stroke: var(--line); stroke-width: 1px; }
 
-.s-canvas .wf-plate {
+.s-workflow .wf-plate {
   font-family: var(--font-mono);
   letter-spacing: var(--tr-2);
   fill: var(--ink-3);
 }
 
-.s-canvas .wf-name {
+.s-workflow .wf-name {
   font-family: var(--font-display);
   font-weight: 300;
   letter-spacing: var(--tr-1);
   fill: var(--ink);
 }
 
-.s-canvas .wf-sub {
+.s-workflow .wf-sub {
   font-family: var(--font-mono);
   letter-spacing: var(--tr-1);
   fill: var(--ink-3);
@@ -872,55 +872,55 @@
 
 /* the readout node: the same plate as the other nodes, set apart by a brighter
    outline and full-strength type; no fill, no glow */
-.s-canvas .wf-node--out .wf-box { fill: var(--bg-2); stroke: var(--line-4); }
-.s-canvas .wf-node--out .wf-rule { stroke: var(--line-2); }
-.s-canvas .wf-node--out .wf-name { fill: var(--ink); }
-.s-canvas .wf-node--out .wf-sub { fill: var(--ink-2); }
-.s-canvas .wf-arrow { fill: none; stroke: var(--ink); stroke-opacity: 0.8; stroke-width: 1px; }
+.s-workflow .wf-node--out .wf-box { fill: var(--bg-2); stroke: var(--line-4); }
+.s-workflow .wf-node--out .wf-rule { stroke: var(--line-2); }
+.s-workflow .wf-node--out .wf-name { fill: var(--ink); }
+.s-workflow .wf-node--out .wf-sub { fill: var(--ink-2); }
+.s-workflow .wf-arrow { fill: none; stroke: var(--ink); stroke-opacity: 0.8; stroke-width: 1px; }
 
-.s-canvas .wf-wire { fill: none; stroke: var(--line-2); stroke-width: 1px; }
+.s-workflow .wf-wire { fill: none; stroke: var(--line-2); stroke-width: 1px; }
 
-.s-canvas .wf-pulse {
+.s-workflow .wf-pulse {
   fill: none;
   stroke: var(--ink);
   stroke-width: 1px;
   stroke-dasharray: 30 806;   /* one 30-unit signal on the 836-unit run of wire */
 }
 
-.s-canvas .wf-port { fill: var(--bg); stroke: var(--line-3); stroke-width: 1px; }
-.s-canvas .wf-port--inv { fill: var(--ink); stroke: var(--ink); }
+.s-workflow .wf-port { fill: var(--bg); stroke: var(--line-3); stroke-width: 1px; }
+.s-workflow .wf-port--inv { fill: var(--ink); stroke: var(--ink); }
 
-.s-canvas .wf-dim { fill: none; stroke: var(--line-2); stroke-width: 1px; }
+.s-workflow .wf-dim { fill: none; stroke: var(--line-2); stroke-width: 1px; }
 
-.s-canvas .wf-dim-t,
-.s-canvas .wf-block-t {
+.s-workflow .wf-dim-t,
+.s-workflow .wf-block-t {
   font-family: var(--font-mono);
   letter-spacing: var(--tr-3);
   fill: var(--ink-3);
 }
 
-/* the refused wire — dotted, and crossed out at the input it was denied */
-.s-canvas .wf-ref {
+/* the refused wire : dotted, and crossed out at the input it was denied */
+.s-workflow .wf-ref {
   fill: none;
   stroke: var(--line-3);
   stroke-width: 1px;
   stroke-dasharray: 2 6;
 }
 
-.s-canvas .wf-ref-t {
+.s-workflow .wf-ref-t {
   font-family: var(--font-mono);
   letter-spacing: var(--tr-2);
   fill: var(--ink-3);
 }
 
-.s-canvas .wf-x-box { fill: var(--bg); stroke: var(--line-3); stroke-width: 1px; }
-.s-canvas .wf-x-l { stroke: var(--ink-2); stroke-width: 1px; }
+.s-workflow .wf-x-box { fill: var(--bg); stroke: var(--line-3); stroke-width: 1px; }
+.s-workflow .wf-x-l { stroke: var(--ink-2); stroke-width: 1px; }
 
 /* =========================================================================
    2. THE REFUSAL INSPECTOR
    ========================================================================= */
 
-.s-canvas__refuse {
+.s-workflow__refuse {
   display: grid;
   grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
   gap: var(--gap) clamp(32px, 4.5vw, 84px);
@@ -928,7 +928,7 @@
   margin-top: clamp(52px, 7vw, 108px);
 }
 
-.s-canvas__kicker {
+.s-workflow__kicker {
   font-family: var(--font-mono);
   font-size: var(--t-mono);
   letter-spacing: var(--tr-3);
@@ -937,24 +937,24 @@
   margin-bottom: 1.1rem;
 }
 
-.s-canvas__h3 { font-size: var(--t-2); }
+.s-workflow__h3 { font-size: var(--t-2); }
 
-.s-canvas__copy {
+.s-workflow__copy {
   margin-top: 1.25rem;
   font-size: var(--t-0);
   color: var(--ink-2);
   max-width: 46ch;
 }
 
-.s-canvas__panel-wrap { min-width: 0; }
+.s-workflow__panel-wrap { min-width: 0; }
 
-.s-canvas__panel {
+.s-workflow__panel {
   position: relative;
   border: 1px solid var(--line-2);
   background: var(--bg-2);
 }
 
-.s-canvas__bar {
+.s-workflow__bar {
   display: flex;
   align-items: center;
   gap: 0.7rem;
@@ -963,7 +963,7 @@
   border-bottom: 1px solid var(--line-2);
 }
 
-.s-canvas__bar-x {
+.s-workflow__bar-x {
   width: 10px;
   height: 10px;
   flex: none;
@@ -972,7 +972,7 @@
   stroke-width: 1px;
 }
 
-.s-canvas__bar-t {
+.s-workflow__bar-t {
   font-family: var(--font-mono);
   font-size: var(--t-mono);
   letter-spacing: var(--tr-2);
@@ -981,7 +981,7 @@
   white-space: nowrap;
 }
 
-.s-canvas__bar-idx {
+.s-workflow__bar-idx {
   margin-left: auto;
   font-family: var(--font-mono);
   font-size: var(--t-mono);
@@ -990,32 +990,32 @@
   white-space: nowrap;
 }
 
-.s-canvas__body { padding: clamp(16px, 2vw, 28px) clamp(13px, 1.6vw, 20px) clamp(12px, 1.4vw, 18px); }
+.s-workflow__body { padding: clamp(16px, 2vw, 28px) clamp(13px, 1.6vw, 20px) clamp(12px, 1.4vw, 18px); }
 
 /* All examples occupy one grid cell, so the panel is as tall as the tallest
    of them and never jumps as they rotate. */
-.s-canvas__list {
+.s-workflow__list {
   display: grid;
   min-height: 158px;
 }
 
-.s-canvas__item {
+.s-workflow__item {
   grid-area: 1 / 1;
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--dur) var(--ease), visibility var(--dur) var(--ease);
 }
 
-.s-canvas__item.is-active { opacity: 1; visibility: visible; }
+.s-workflow__item.is-active { opacity: 1; visibility: visible; }
 
-.s-canvas__dl {
+.s-workflow__dl {
   display: grid;
   grid-template-columns: 78px minmax(0, 1fr);
   gap: 0.6rem 1rem;
   align-items: baseline;
 }
 
-.s-canvas__dt {
+.s-workflow__dt {
   font-family: var(--font-mono);
   font-size: var(--t-mono);
   letter-spacing: var(--tr-2);
@@ -1023,14 +1023,14 @@
   color: var(--ink-3);
 }
 
-.s-canvas__dd {
+.s-workflow__dd {
   font-size: var(--t--1);
   line-height: 1.6;
   color: var(--ink-2);
   overflow-wrap: anywhere;
 }
 
-.s-canvas__dd--wire {
+.s-workflow__dd--wire {
   font-family: var(--font-mono);
   font-size: var(--t-mono-l);
   letter-spacing: var(--tr-2);
@@ -1039,9 +1039,9 @@
   line-height: 1.5;
 }
 
-.s-canvas__arw { color: var(--ink-3); padding-inline: 0.15em; }
+.s-workflow__arw { color: var(--ink-3); padding-inline: 0.15em; }
 
-.s-canvas__foot {
+.s-workflow__foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1051,19 +1051,19 @@
   border-top: 1px solid var(--line);
 }
 
-/* The pickers are driven entirely by canvas.js; without it they would be
+/* The pickers are driven entirely by workflow.js; without it they would be
    focusable buttons promising something they cannot do. */
-.s-canvas__dots { display: none; gap: 2px; margin-right: -6px; }
-.s-canvas__panel.is-live .s-canvas__dots { display: flex; }
+.s-workflow__dots { display: none; gap: 2px; margin-right: -6px; }
+.s-workflow__panel.is-live .s-workflow__dots { display: flex; }
 
-.s-canvas__dot {
+.s-workflow__dot {
   width: 28px;
   height: 28px;
   display: grid;
   place-items: center;
 }
 
-.s-canvas__dot::before {
+.s-workflow__dot::before {
   content: '';
   width: 7px;
   height: 7px;
@@ -1072,10 +1072,10 @@
               border-color var(--dur-fast) var(--ease);
 }
 
-.s-canvas__dot:hover::before { border-color: var(--ink); }
-.s-canvas__dot[aria-pressed="true"]::before { background: var(--ink); border-color: var(--ink); }
+.s-workflow__dot:hover::before { border-color: var(--ink); }
+.s-workflow__dot[aria-pressed="true"]::before { background: var(--ink); border-color: var(--ink); }
 
-.s-canvas__note {
+.s-workflow__note {
   margin-top: clamp(14px, 1.6vw, 20px);
   font-family: var(--font-mono);
   font-size: var(--t-mono-l);
@@ -1088,9 +1088,9 @@
    3. PLATES
    ========================================================================= */
 
-.s-canvas__strap { margin-top: clamp(52px, 7vw, 108px); }
+.s-workflow__strap { margin-top: clamp(52px, 7vw, 108px); }
 
-.s-canvas__shots {
+.s-workflow__shots {
   display: grid;
   grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr);
   gap: var(--gap);
@@ -1103,38 +1103,38 @@
    ========================================================================= */
 
 @media (max-width: 1140px) {
-  .s-canvas__hint { display: inline; }
+  .s-workflow__hint { display: inline; }
 }
 
 @media (max-width: 1024px) {
-  .s-canvas__refuse { gap: var(--gap) clamp(28px, 3.5vw, 48px); }
+  .s-workflow__refuse { gap: var(--gap) clamp(28px, 3.5vw, 48px); }
 }
 
 @media (max-width: 860px) {
-  .s-canvas__refuse { grid-template-columns: minmax(0, 1fr); gap: clamp(32px, 5vw, 48px); }
-  .s-canvas__copy { max-width: 58ch; }
-  .s-canvas__shots { grid-template-columns: minmax(0, 1fr); }
+  .s-workflow__refuse { grid-template-columns: minmax(0, 1fr); gap: clamp(32px, 5vw, 48px); }
+  .s-workflow__copy { max-width: 58ch; }
+  .s-workflow__shots { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 620px) {
-  .s-canvas__plate { padding: 12px; }
-  .s-canvas__plate-head { padding-bottom: 10px; margin-bottom: 12px; }
-  .s-canvas__tag--ink { letter-spacing: var(--tr-2); }
+  .s-workflow__plate { padding: 12px; }
+  .s-workflow__plate-head { padding-bottom: 10px; margin-bottom: 12px; }
+  .s-workflow__tag--ink { letter-spacing: var(--tr-2); }
 
-  .s-canvas__dl { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
-  .s-canvas__dt:not(:first-of-type) { margin-top: 1rem; }
-  .s-canvas__list { min-height: 214px; }
+  .s-workflow__dl { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
+  .s-workflow__dt:not(:first-of-type) { margin-top: 1rem; }
+  .s-workflow__list { min-height: 214px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   /* No travelling signal: every wire simply reads as drawn. */
-  .s-canvas .wf-pulse { stroke-dasharray: none; stroke: var(--line-4); }
-  .s-canvas__item { transition: none; }
+  .s-workflow .wf-pulse { stroke-dasharray: none; stroke: var(--line-4); }
+  .s-workflow__item { transition: none; }
 }
 
 
 /* ---- 05-steps ---------------------------------------------------------- */
-/* AI MAESTRO — section 05 "how" · OPERATION
+/* AI MAESTRO : section 05 "how" · OPERATION
    Three-step sequence: connector rule, registration ticks, spec readouts. */
 
 .s-steps__list {
@@ -1269,7 +1269,7 @@
 
 
 /* ---- 06-export --------------------------------------------------------- */
-/* AI MAESTRO — section 06 "export" (id="export", plate 05 / PORTABILITY)
+/* AI MAESTRO : section 06 "export" (id="export", plate 05 / PORTABILITY)
    Left: experiments + leaderboard table and FIG. 05. Right: plain-code export panel. */
 
 /* ---- two-column sheet ---------------------------------------------------- */
@@ -1430,7 +1430,7 @@
   white-space: pre;
 }
 
-/* Comments only — no syntax colouring anywhere on this site. */
+/* Comments only : no syntax colouring anywhere on this site. */
 .s-export .ex-cm { color: var(--ink-3); }
 
 .s-export .ex-note { margin-top: 1rem; }
@@ -1461,7 +1461,7 @@
 
 
 /* ---- 07-requirements --------------------------------------------------- */
-/* AI MAESTRO — section 07 / requirements (id="requirements", plate 06 SPECIFICATION)
+/* AI MAESTRO : section 07 / requirements (id="requirements", plate 06 SPECIFICATION)
    Spec sheet: dotted-leader rows, two columns from 860px, SmartScreen note, ghost CTA. */
 
 /* ---- sheet shell -------------------------------------------------------- */
@@ -1609,7 +1609,7 @@
 
 
 /* ---- 08-faq ------------------------------------------------------------ */
-/* AI MAESTRO — section 08 / FAQ ("07 / QUERIES")
+/* AI MAESTRO : section 08 / FAQ ("07 / QUERIES")
    Sticky plate head at >=1024px; hairline accordion driven by app.js. */
 
 .s-faq {
@@ -1667,7 +1667,7 @@
 
 .s-faq__q::-webkit-details-marker { display: none; }
 
-/* plate index — 01 … 10 */
+/* plate index : 01 … 10 */
 .s-faq__q::before {
   content: counter(faq, decimal-leading-zero);
   flex: none;
@@ -1769,7 +1769,7 @@
 
 
 /* ---- 09-download ------------------------------------------------------- */
-/* AI MAESTRO — section 09 / download (id="download", plate 08 ACQUISITION)
+/* AI MAESTRO : section 09 / download (id="download", plate 08 ACQUISITION)
    Closing acquisition band: poster CTA, file plate, three-step install sequence. */
 
 /* ---- band shell --------------------------------------------------------- */
@@ -1782,7 +1782,7 @@
   position: relative;
 }
 
-/* Corner plates — title-block stamps in the band's padding. */
+/* Corner plates : title-block stamps in the band's padding. */
 .s-dl__plate {
   position: absolute;
   z-index: 1;
@@ -2028,4 +2028,23 @@
   .s-dl__cell:nth-child(2n) { border-left: 0; }
   .s-dl__cell:nth-child(n + 2) { border-top: 1px solid var(--line); }
   .s-dl__cell { justify-content: flex-start; padding: 0.75rem 1rem; }
+}
+
+/* Product preview */
+.s-hero { min-height: 0; padding-block: 132px 104px; }
+.s-hero__wordmark { font-size: clamp(38px, 7vw, 88px); }
+.s-hero__mark { height: clamp(54px, 6.6vw, 92px); }
+.s-hero__sub { margin-top: 24px; }
+.s-hero__pitch { max-width: 55ch; margin-top: 24px; }
+.s-hero__actions { margin-top: 28px; }
+.s-hero__note { margin-top: 18px; }
+.s-hero__note a { text-decoration: underline; text-underline-offset: 3px; }
+.s-hero__preview { width: 100%; margin-top: 48px; text-align: left; }
+.s-hero__preview .shot__frame { box-shadow: 0 24px 90px rgba(0,0,0,.5); }
+.s-hero__scroll { display: none; }
+.s-workflow__shots { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+@media (max-width: 620px) {
+  .s-hero { padding-block: 118px 90px; }
+  .s-hero__preview { margin-top: 32px; }
+  .s-hero__preview figcaption { flex-wrap: wrap; gap: 6px; }
 }

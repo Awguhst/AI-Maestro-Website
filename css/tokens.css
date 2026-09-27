@@ -1,5 +1,5 @@
 /* =========================================================================
-   AI MAESTRO — design tokens
+   AI MAESTRO : design tokens
    Technical-drawing monochrome. No hue, no build step.
    Every value the site uses lives here. Sections may READ these; never
    redefine :root anywhere else.
@@ -15,7 +15,7 @@
   /* ---- ink ----------------------------------------------------------- */
   --ink:       #f4f3f0;   /* display + primary                             */
   --ink-2:     #a9a8a4;   /* body copy, 8.5:1                              */
-  --ink-3:     #7d7c78;   /* mono labels, 4.9:1 — smallest passing tier    */
+  --ink-3:     #7d7c78;   /* mono labels, 4.9:1 : smallest passing tier    */
   --ink-4:     #4a4a47;   /* decorative only: never text under 16px        */
 
   /* ---- hairlines (the whole visual language) ------------------------- */
@@ -30,7 +30,7 @@
   --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono:    'IBM Plex Mono', 'Consolas', 'SF Mono', ui-monospace, monospace;
 
-  /* fluid scale — 1.250 at small, 1.333 at large */
+  /* fluid scale : 1.250 at small, 1.333 at large */
   --t-mono:  0.6875rem;                                  /* 11px labels    */
   --t-mono-l: 0.75rem;                                   /* 12px labels    */
   --t--1:   clamp(0.8125rem, 0.79rem + 0.12vw, 0.875rem);
@@ -41,7 +41,7 @@
   --t-4:    clamp(2.25rem, 1.65rem + 3.00vw, 4.5rem);
   --t-5:    clamp(2.75rem, 1.40rem + 6.75vw, 7.5rem);    /* wordmark       */
 
-  /* tracking — the signature of the mark */
+  /* tracking : the signature of the mark */
   --tr-1: 0.06em;
   --tr-2: 0.14em;
   --tr-3: 0.22em;

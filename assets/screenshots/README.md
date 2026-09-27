@@ -1,25 +1,48 @@
-# Screenshot slots
+# App screenshots
 
-Drop PNG files here with these exact names. Each slot on the page shows a technical
-placeholder until the matching file exists — `js/app.js` swaps it out automatically,
-so there is nothing to edit in the HTML.
+Captured from the current QML app on 2026-09-27. These are actual rendered app
+frames, with measured local runs. No metrics or interface elements are drawn over
+the captures. The screenshots retain their native colours and use WebP quality 92.
 
-| File              | Used in section        | Aspect | Suggested size | Should show |
-|-------------------|------------------------|--------|----------------|-------------|
-| `results.png`     | Features (FIG. 01)     | 16:9   | 2560 × 1440    | The results panel: confusion matrix, ROC/PR curve, feature importance |
-| `molecule.png`    | Models & data (FIG. 02)| 4:3    | 1600 × 1200    | A molecule drawn from SMILES beside the dataset table |
-| `canvas.png`      | The canvas (FIG. 03)   | 16:10  | 2560 × 1600    | The canvas with data → preprocessing → representation → split → model wired up |
-| `training.png`    | The canvas (FIG. 04)   | 16:9   | 1920 × 1080    | A run in flight: training curve plus CPU/GPU usage |
-| `leaderboard.png` | Export (FIG. 05)       | 16:9   | 1920 × 1080    | The leaderboard comparing several runs |
+| File | Pixels | Content |
+| --- | --- | --- |
+| `overview.webp` | 2160 x 1440 | Completed random forest workflow and test metrics |
+| `results.webp` | 2160 x 1440 | The same run, scrolled to diagnostic plots |
+| `workflow.webp` | 2160 x 900 | Five connected nodes before training |
+| `datasets.webp` | 2160 x 1350 | Project datasets and the built-in dataset catalog |
+| `leaderboard.webp` | 2160 x 1080 | Three actual random forest runs in experiment history |
+| `molecule.webp` | 1800 x 1200 | Six example SMILES structures in the molecule gallery |
 
-Notes:
+The classification captures use the bundled Breast Cancer Wisconsin dataset.
+The datasets page includes installed Iris, Wine, and Breast Cancer Wisconsin data.
+They illustrate the interface, not a benchmark or a clinical claim.
+The structure gallery uses a small example CSV without target values.
 
-- Images are cropped with `object-fit: cover`, anchored to the top. Keep the important
-  content in the upper two-thirds.
-- Capture on a dark app theme so the shots sit inside the page rather than glowing out of it.
-- Keep each file under ~500 KB if you can (the page loads them lazily, but they are the
-  heaviest thing on it).
-- If you change a filename, update the matching `src` **and** the `.shot__ph-meta` line in
-  `index.html` so the placeholder keeps telling the truth.
-- `alt` text is already written for each slot. If a screenshot shows something different
-  from the table above, rewrite its `alt` to match what is actually in the picture.
+## Recreate
+
+Run from the website folder with the desktop app's Python environment and its
+ML dependencies installed (including scikit-learn and RDKit):
+
+```
+python scripts/capture_app.py --app "../ML Studio"
+```
+
+Add `--datasets-only` to refresh the datasets page without rerunning training.
+
+The script uses `create_engine`, the production fonts and image providers, and
+ordinary controller actions. It makes a new temporary project and app home. It
+prints the demo project location for inspection and never loads personal projects.
+Capture sizes are logical window dimensions at 1.5 pixel density.
+
+After changing screenshots, regenerate the social image with Playwright installed:
+
+```
+node scripts/create_social.cjs
+```
+
+Set `BROWSER_CHANNEL` to `msedge` or `chrome` to use an installed browser.
+This updates both `assets/og-image.svg` and `assets/og-image.png`.
+
+Preview frames use the original aspect ratio with `object-fit: contain`. Each
+image opens in a keyboard accessible dialog, or as a normal image link without
+JavaScript. On narrow screens the dialog scrolls horizontally for readable detail.

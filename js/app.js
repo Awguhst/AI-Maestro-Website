@@ -1,5 +1,5 @@
 /* =========================================================================
-   AI MAESTRO — site behaviour
+   AI MAESTRO : site behaviour
    Progressive enhancement only: every section is readable and usable with
    this file removed. No dependencies, no build step.
    ========================================================================= */
@@ -138,6 +138,40 @@
     });
   }
 
+  /* Full size images, with native modal focus management and Escape. */
+  function initPreviews() {
+    if (!('HTMLDialogElement' in window)) return;
+    var modal = document.createElement('dialog');
+    modal.className = 'preview';
+    modal.setAttribute('aria-label', 'App screenshot');
+    modal.innerHTML = '<form method="dialog"><button class="preview__close" autofocus>Close <span aria-hidden="true">×</span></button></form><div class="preview__scroll"><img alt=""></div><p class="preview__caption"></p>';
+    document.body.appendChild(modal);
+    var full = $('img', modal);
+    var caption = $('.preview__caption', modal);
+    var previousOverflow = '';
+    $$('[data-preview]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        if (link.closest('.is-missing')) return;
+        e.preventDefault();
+        var thumbnail = $('img', link);
+        full.src = link.href;
+        full.alt = thumbnail.alt;
+        caption.textContent = thumbnail.alt;
+        previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        modal.showModal();
+        $('.preview__scroll', modal).scrollTo(0, 0);
+      });
+    });
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) modal.close();
+    });
+    modal.addEventListener('close', function () {
+      document.body.style.overflow = previousOverflow;
+    });
+  }
+
   /* ---- accordion -------------------------------------------------------
      Enhances native <details>. Without JS they still open and close.
      Markup contract: [data-accordion] > details > summary + [data-panel]
@@ -231,6 +265,7 @@
     initSpy();
     initReveal();
     initShots();
+    initPreviews();
     initAccordion();
     initSpotlight();
     initYear();

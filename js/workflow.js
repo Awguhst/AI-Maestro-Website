@@ -1,5 +1,5 @@
 /* =========================================================================
-   AI MAESTRO — the canvas section
+   AI MAESTRO : the workflow section
    Two moving parts: a signal that travels the pipeline wires, and the
    refusal inspector that cycles through its examples. Both are progressive
    enhancement; the section reads correctly with this file removed.
@@ -30,8 +30,8 @@
      far side. A dash pattern per wire segment would restart at every subpath
      and make all five gaps blink in unison instead. */
   var WIRE = 836;
-  var SWEEP = 3400;   /* ms — data to results                               */
-  var HOLD = 5600;    /* ms — how long one refusal example stays up         */
+  var SWEEP = 3400;   /* ms : data to results                               */
+  var HOLD = 5600;    /* ms : how long one refusal example stays up         */
 
   /* ---- the refusal inspector -------------------------------------------- */
   var current = 0;
@@ -55,7 +55,7 @@
   });
 
   /* The controls only do something once this file is running. */
-  var panel = one('.s-canvas__panel');
+  var panel = one('.s-workflow__panel');
   if (panel) panel.classList.add('is-live');
 
   /* Reading an example should not have it swapped out mid-sentence. */

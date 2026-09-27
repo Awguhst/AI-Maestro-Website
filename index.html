@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Maestro — Visual Machine Learning for Windows</title>
-<meta name="description" content="Build a machine learning pipeline by wiring nodes on a canvas. Press Run and a real Python engine trains and evaluates it. Download AI Maestro for Windows 10 and 11.">
+<title>AI Maestro | Visual Machine Learning for Windows</title>
+<meta name="description" content="Build visual ML workflows, train models locally, and compare your results. Download AI Maestro for Windows 10 and 11.">
 <meta name="theme-color" content="#070707">
 <meta name="color-scheme" content="dark">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -14,15 +14,17 @@
 <link rel="canonical" href="/">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="AI Maestro — Visual Machine Learning">
-<meta property="og:description" content="Wire a pipeline on a canvas. Press Run. A real Python engine trains and evaluates it. Windows 10 and 11.">
-<meta property="og:image" content="assets/og-image.png">
+<meta property="og:title" content="AI Maestro | Visual Machine Learning">
+<meta property="og:description" content="Connect your data to a model. Train locally, inspect results, and keep every experiment. For Windows 10 and 11.">
+<meta property="og:image" content="assets/og-image.png?v=0.1.0-7">
+<meta property="og:image:alt" content="AI Maestro with a connected ML workflow and results from a local training run.">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI Maestro — Visual Machine Learning">
-<meta name="twitter:description" content="Wire a pipeline on a canvas. Press Run. A real Python engine trains and evaluates it. Windows 10 and 11.">
-<meta name="twitter:image" content="assets/og-image.png">
+<meta name="twitter:title" content="AI Maestro | Visual Machine Learning">
+<meta name="twitter:description" content="Connect your data to a model. Train locally, inspect results, and keep every experiment. For Windows 10 and 11.">
+<meta name="twitter:image" content="assets/og-image.png?v=0.1.0-7">
+<meta name="twitter:image:alt" content="AI Maestro with a connected ML workflow and results from a local training run.">
 <meta name="google-site-verification" content="">
 
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -32,9 +34,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&family=Inter:wght@300;400&family=Jost:wght@200;300;400&display=swap">
 
-<link rel="stylesheet" href="css/tokens.css?v=0.1.0-6">
-<link rel="stylesheet" href="css/base.css?v=0.1.0-6">
-<link rel="stylesheet" href="css/sections.css?v=0.1.0-6">
+<link rel="stylesheet" href="css/tokens.css?v=0.1.0-7">
+<link rel="stylesheet" href="css/base.css?v=0.1.0-7">
+<link rel="stylesheet" href="css/sections.css?v=0.1.0-7">
 
 <script>document.documentElement.classList.add('js');</script>
 
@@ -47,7 +49,7 @@
   "applicationSubCategory": "Machine Learning",
   "operatingSystem": "Windows 10, Windows 11",
   "softwareVersion": "0.1.0",
-  "description": "A Windows desktop app for visual machine learning. Build a pipeline by wiring nodes on a canvas, then run it on a real Python engine.",
+  "description": "A Windows desktop app for visual machine learning. Connect nodes in a workflow editor, train locally, and compare reproducible experiments.",
   "downloadUrl": "downloads/AIMaestro-Setup.exe",
   "fileFormat": "application/vnd.microsoft.portable-executable",
   "author": { "@type": "Organization", "name": "Orchestral Systems" }
@@ -69,7 +71,7 @@
 
     <nav class="nav" id="site-nav" aria-label="Primary">
       <a class="nav__link" href="#features">Features</a>
-      <a class="nav__link" href="#workflow">Canvas</a>
+      <a class="nav__link" href="#workflow">Workflow</a>
       <a class="nav__link" href="#how">How it works</a>
       <a class="nav__link" href="#requirements">Requirements</a>
       <a class="nav__link" href="#faq">FAQ</a>
@@ -108,7 +110,7 @@
     </p>
 
     <p class="s-hero__pitch reveal" style="--d:.16s">
-      Build a machine learning pipeline by wiring nodes on a canvas. Press <strong>Run</strong> and a real Python engine trains it, evaluates it, and saves the whole thing as an experiment you can reproduce.
+      Connect your data to a model. Press <strong>Run</strong>. Watch it train, explore the results, and keep every experiment in one desktop workspace.
     </p>
 
     <div class="s-hero__actions reveal" style="--d:.24s">
@@ -135,8 +137,17 @@
 
     <p class="s-hero__note reveal" style="--d:.36s">
       <span class="s-hero__note-plate">Note</span>
-      The installer is not code-signed yet. Windows SmartScreen may warn you: choose <strong>More info</strong>, then <strong>Run anyway</strong>.
+      The installer is not code-signed yet. <a href="#download">Read the installation notes.</a>
     </p>
+
+    <figure class="shot s-hero__preview reveal" style="--d:.28s; --shot-ar:3/2;">
+      <a class="shot__frame" href="assets/screenshots/overview.webp" data-preview aria-label="Open full size: AI Maestro running a complete classification workflow with connected nodes, test scores, and experiment results.">
+        <img src="assets/screenshots/overview.webp" width="2160" height="1440" fetchpriority="high" decoding="async" alt="AI Maestro running a complete classification workflow with connected nodes, test scores, and experiment results.">
+        <div class="shot__ph"><p class="shot__ph-title">Explore your workflow and results</p><p class="shot__ph-meta">Preview unavailable. Please reload to try again.</p></div>
+        <span class="shot__zoom" aria-hidden="true">View full size ↗</span>
+      </a>
+      <figcaption><span>Inside AI Maestro</span><span>A real local training run</span></figcaption>
+    </figure>
 
   </div>
 
@@ -184,7 +195,7 @@
 
     <header class="sec__head reveal">
       <p class="eyebrow"><span class="eyebrow__idx">01</span> CAPABILITIES</p>
-      <h2 class="sec__title" id="features-t">Everything a run needs, on one canvas</h2>
+      <h2 class="sec__title" id="features-t">From your first connection to your next result</h2>
       <p class="sec__lede">Seven things the app does between a file on disk and a result you can defend.</p>
     </header>
 
@@ -207,7 +218,7 @@
             </svg>
             <span class="s-features__idx">F.01</span>
           </div>
-          <h3 class="s-features__title">The canvas that checks itself</h3>
+          <h3 class="s-features__title">Connections that guide you</h3>
           <p class="s-features__copy">Nodes carry data, preprocessing, representation, split, and model. A wire is only allowed if the pipeline would actually run, and a refused wire names the rule it broke and what to insert instead.</p>
         </article>
       </li>
@@ -222,8 +233,8 @@
             </svg>
             <span class="s-features__idx">F.02</span>
           </div>
-          <h3 class="s-features__title">A real Python engine</h3>
-          <p class="s-features__copy">Press <strong>Run</strong> and a real Python engine trains and evaluates the workflow you drew. Nothing on the canvas is simulated.</p>
+          <h3 class="s-features__title">Local Python execution</h3>
+          <p class="s-features__copy">Train and evaluate the workflow you build using Python and established ML libraries. Execution runs locally on your machine.</p>
         </article>
       </li>
 
@@ -305,7 +316,7 @@
             <span class="s-features__idx">F.07</span>
           </div>
           <h3 class="s-features__title">Extensible</h3>
-          <p class="s-features__copy">Plugins add nodes and capabilities to the canvas. The chemistry set is one of them, so what a pipeline can hold is not fixed at install.</p>
+          <p class="s-features__copy">Extend your workspace with plugins. The chemistry plugin adds molecular data, representations, and models to the node library.</p>
         </article>
       </li>
 
@@ -313,15 +324,15 @@
 
     <hr class="hr hr--dash s-features__rule">
 
-    <figure class="shot reveal s-features__shot" style="--shot-ar: 16/9;">
-      <div class="shot__frame">
-        <img src="assets/screenshots/results.png" alt="AI Maestro results panel showing a confusion matrix, ROC curve and feature importance for a finished run." loading="lazy" decoding="async">
+    <figure class="shot reveal s-features__shot" style="--shot-ar: 3/2;">
+      <a class="shot__frame" href="assets/screenshots/results.webp" data-preview aria-label="Open full size: A completed classification workflow above a confusion matrix, ROC curve, calibration chart, and feature importance.">
+          <img src="assets/screenshots/results.webp" alt="A completed classification workflow above a confusion matrix, ROC curve, calibration chart, and feature importance." width="2160" height="1440" loading="lazy" decoding="async">
         <div class="shot__ph">
           <div class="shot__ph-box" aria-hidden="true"></div>
           <p class="shot__ph-title">SCREENSHOT &middot; RESULTS</p>
-          <p class="shot__ph-meta">assets/screenshots/results.png &middot; 2560&times;1440</p>
+          <p class="shot__ph-meta">Preview unavailable. Please reload to try again.</p>
         </div>
-      </div>
+        <span class="shot__zoom" aria-hidden="true">View full size ↗</span></a>
       <figcaption><span>FIG. 01 &middot; RESULTS PANEL</span><span>AM-01</span></figcaption>
     </figure>
 
@@ -430,19 +441,19 @@
         </svg>
 
         <h3 class="s-models__h">Chemistry</h3>
-        <p>The chemistry plugin adds RDKit. Give it a SMILES string and the structure is drawn beside the table it came from.</p>
+        <p>The chemistry plugin adds RDKit. Browse structures from a SMILES column and inspect each molecule alongside its row details.</p>
         <p>Splits can be taken by scaffold, so a framework does not sit on both sides of the line. Graph neural networks read the molecule as a graph of atoms and bonds instead of a row of numbers.</p>
       </div>
 
-      <figure class="shot reveal" style="--shot-ar: 4/3;">
-        <div class="shot__frame">
-          <img src="assets/screenshots/molecule.png" alt="A molecule drawn from its SMILES string next to the dataset table in AI Maestro." loading="lazy" decoding="async">
+      <figure class="shot reveal" style="--shot-ar:1800/1200;">
+        <a class="shot__frame" href="assets/screenshots/molecule.webp" data-preview aria-label="Open full size: The molecular dataset gallery with six SMILES structures and a selected molecule shown in detail.">
+          <img src="assets/screenshots/molecule.webp" alt="The molecular dataset gallery with six SMILES structures and a selected molecule shown in detail." width="1800" height="1200" loading="lazy" decoding="async">
           <div class="shot__ph">
             <div class="shot__ph-box" aria-hidden="true"></div>
             <p class="shot__ph-title">SCREENSHOT &#183; MOLECULE</p>
-            <p class="shot__ph-meta">assets/screenshots/molecule.png &#183; 1600&#215;1200</p>
+            <p class="shot__ph-meta">Preview unavailable. Please reload to try again.</p>
           </div>
-        </div>
+        <span class="shot__zoom" aria-hidden="true">View full size ↗</span></a>
         <figcaption><span>FIG. 02 &#183; Molecule view</span><span>AM-01</span></figcaption>
       </figure>
 
@@ -452,35 +463,34 @@
 </section>
 
 <!-- ======================================================================
-     CANVAS
+     WORKFLOW
      ====================================================================== -->
-<section class="sec s-canvas grid-bg" id="workflow" aria-labelledby="workflow-t">
+<section class="sec s-workflow grid-bg" id="workflow" aria-labelledby="workflow-t">
   <div class="wrap">
 
     <header class="sec__head reveal">
-      <p class="eyebrow"><span class="eyebrow__idx">03</span> THE CANVAS</p>
+      <p class="eyebrow"><span class="eyebrow__idx">03</span> WORKFLOW EDITOR</p>
       <h2 class="sec__title" id="workflow-t">Wires that only connect if they run</h2>
-      <p class="sec__lede">You build a run by wiring nodes on a canvas, left to right, until the
-        pipeline is complete. A wire that could not execute is refused as you draw it, and the
-        canvas says which rule stopped it.</p>
+      <p class="sec__lede">Connect data, preparation, features, and a model from left to right.
+        The editor checks each connection and explains what to change when two nodes cannot work together.</p>
     </header>
 
-    <!-- PART 1 — pipeline schematic --------------------------------------- -->
-    <div class="s-canvas__plate bracket reveal">
-      <div class="s-canvas__plate-head">
-        <span class="s-canvas__tag s-canvas__tag--ink">PIPELINE SCHEMATIC</span>
-        <span class="s-canvas__tag s-canvas__hint" aria-hidden="true">SCROLL &rarr;</span>
+    <!-- PART 1 | pipeline schematic --------------------------------------- -->
+    <div class="s-workflow__plate bracket reveal">
+      <div class="s-workflow__plate-head">
+        <span class="s-workflow__tag s-workflow__tag--ink">PIPELINE SCHEMATIC</span>
+        <span class="s-workflow__tag s-workflow__hint" aria-hidden="true">SCROLL &rarr;</span>
       </div>
 
-      <div class="s-canvas__scroll" role="group" tabindex="0" aria-label="Pipeline diagram, scroll horizontally">
-        <svg class="s-canvas__svg" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid meet"
+      <div class="s-workflow__scroll" role="group" tabindex="0" aria-label="Pipeline diagram, scroll horizontally">
+        <svg class="s-workflow__svg" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid meet"
              role="img" aria-labelledby="wf-svg-t" aria-describedby="wf-svg-d">
           <title id="wf-svg-t">Schematic of an AI Maestro pipeline: five stages wired into a results readout</title>
           <desc id="wf-svg-d">Six blocks stand in a row and are wired left to right: data holding
             titanic.csv, preprocessing doing impute and scale, representation producing descriptors,
             split at eighty twenty random, and a model running xgboost, ending in a results readout.
             Below the row a dotted wire leaves the data block, runs across, and stops at a crossed
-            box under the model input: a connection the canvas refused, because a model cannot read
+            box under the model input: a connection the editor refused, because a model cannot read
             raw data.</desc>
 
           <!-- dimension line -->
@@ -555,7 +565,7 @@
             <text class="wf-sub" x="1030" y="195" font-size="13">auc 0.87</text>
           </g>
 
-          <!-- wires: base hairline, then the pulse canvas.js sweeps along it -->
+          <!-- wires: base hairline, then the pulse workflow.js sweeps along it -->
 
           <!-- ports -->
           <g class="wf-port">
@@ -592,108 +602,108 @@
       </div>
     </div>
 
-    <!-- PART 2 — refusal inspector ----------------------------------------- -->
-    <div class="s-canvas__refuse">
-      <div class="s-canvas__aside reveal">
-        <p class="s-canvas__kicker">REFUSALS</p>
-        <h3 class="s-canvas__h3">A wire is checked before it lands</h3>
-        <p class="s-canvas__copy">Drag a wire the pipeline could not execute and the canvas keeps it
+    <!-- PART 2 | refusal inspector ----------------------------------------- -->
+    <div class="s-workflow__refuse">
+      <div class="s-workflow__aside reveal">
+        <p class="s-workflow__kicker">REFUSALS</p>
+        <h3 class="s-workflow__h3">A wire is checked before it lands</h3>
+        <p class="s-workflow__copy">Drag a wire the pipeline could not execute and the editor keeps it
           from connecting. The inspector names the two nodes, states the rule that blocked them, and
           says what belongs in between.</p>
-        <p class="s-canvas__copy">The rule is written in plain words, so the next attempt is an
+        <p class="s-workflow__copy">The rule is written in plain words, so the next attempt is an
           informed one rather than a guess.</p>
       </div>
 
-      <div class="s-canvas__panel-wrap reveal">
-        <div class="s-canvas__panel">
-          <div class="s-canvas__bar">
-            <svg class="s-canvas__bar-x" viewBox="0 0 10 10" aria-hidden="true" focusable="false">
+      <div class="s-workflow__panel-wrap reveal">
+        <div class="s-workflow__panel">
+          <div class="s-workflow__bar">
+            <svg class="s-workflow__bar-x" viewBox="0 0 10 10" aria-hidden="true" focusable="false">
               <path d="M1 1L9 9M9 1L1 9"/>
             </svg>
-            <span class="s-canvas__bar-t">CONNECTION REFUSED</span>
-            <span class="s-canvas__bar-idx"><span data-refusal-idx>01</span> / 03</span>
+            <span class="s-workflow__bar-t">CONNECTION REFUSED</span>
+            <span class="s-workflow__bar-idx"><span data-refusal-idx>01</span> / 03</span>
           </div>
 
-          <div class="s-canvas__body">
-            <ul class="s-canvas__list" role="list">
-              <li class="s-canvas__item is-active" data-refusal>
-                <dl class="s-canvas__dl">
-                  <dt class="s-canvas__dt">Attempted</dt>
-                  <dd class="s-canvas__dd s-canvas__dd--wire">DATA <span class="s-canvas__arw" aria-hidden="true">&rarr;</span><span class="sr-only">to</span> MODEL</dd>
-                  <dt class="s-canvas__dt">Why</dt>
-                  <dd class="s-canvas__dd">A model cannot read raw data.</dd>
-                  <dt class="s-canvas__dt">Fix</dt>
-                  <dd class="s-canvas__dd">Insert preprocessing, representation and split between them.</dd>
+          <div class="s-workflow__body">
+            <ul class="s-workflow__list" role="list">
+              <li class="s-workflow__item is-active" data-refusal>
+                <dl class="s-workflow__dl">
+                  <dt class="s-workflow__dt">Attempted</dt>
+                  <dd class="s-workflow__dd s-workflow__dd--wire">DATA <span class="s-workflow__arw" aria-hidden="true">&rarr;</span><span class="sr-only">to</span> MODEL</dd>
+                  <dt class="s-workflow__dt">Why</dt>
+                  <dd class="s-workflow__dd">A model cannot read raw data.</dd>
+                  <dt class="s-workflow__dt">Fix</dt>
+                  <dd class="s-workflow__dd">Insert preprocessing, representation and split between them.</dd>
                 </dl>
               </li>
 
-              <li class="s-canvas__item" data-refusal>
-                <dl class="s-canvas__dl">
-                  <dt class="s-canvas__dt">Attempted</dt>
-                  <dd class="s-canvas__dd s-canvas__dd--wire">MODEL <span class="s-canvas__arw" aria-hidden="true">&rarr;</span><span class="sr-only">to</span> SPLIT</dd>
-                  <dt class="s-canvas__dt">Why</dt>
-                  <dd class="s-canvas__dd">Split has to happen before the model sees anything, or the
+              <li class="s-workflow__item" data-refusal>
+                <dl class="s-workflow__dl">
+                  <dt class="s-workflow__dt">Attempted</dt>
+                  <dd class="s-workflow__dd s-workflow__dd--wire">MODEL <span class="s-workflow__arw" aria-hidden="true">&rarr;</span><span class="sr-only">to</span> SPLIT</dd>
+                  <dt class="s-workflow__dt">Why</dt>
+                  <dd class="s-workflow__dd">Split has to happen before the model sees anything, or the
                     evaluation leaks training data into the test set.</dd>
-                  <dt class="s-canvas__dt">Fix</dt>
-                  <dd class="s-canvas__dd">Reverse the wire. Split feeds the model, never the other
+                  <dt class="s-workflow__dt">Fix</dt>
+                  <dd class="s-workflow__dd">Reverse the wire. Split feeds the model, never the other
                     way round.</dd>
                 </dl>
               </li>
 
-              <li class="s-canvas__item" data-refusal>
-                <dl class="s-canvas__dl">
-                  <dt class="s-canvas__dt">Attempted</dt>
-                  <dd class="s-canvas__dd s-canvas__dd--wire">REPRESENTATION <span class="s-canvas__arw" aria-hidden="true">&rarr;</span><span class="sr-only">to</span> REPRESENTATION</dd>
-                  <dt class="s-canvas__dt">Why</dt>
-                  <dd class="s-canvas__dd">A representation node expects preprocessed columns, not
+              <li class="s-workflow__item" data-refusal>
+                <dl class="s-workflow__dl">
+                  <dt class="s-workflow__dt">Attempted</dt>
+                  <dd class="s-workflow__dd s-workflow__dd--wire">REPRESENTATION <span class="s-workflow__arw" aria-hidden="true">&rarr;</span><span class="sr-only">to</span> REPRESENTATION</dd>
+                  <dt class="s-workflow__dt">Why</dt>
+                  <dd class="s-workflow__dd">A representation node expects preprocessed columns, not
                     another representation.</dd>
-                  <dt class="s-canvas__dt">Fix</dt>
-                  <dd class="s-canvas__dd">Wire this node back to preprocessing.</dd>
+                  <dt class="s-workflow__dt">Fix</dt>
+                  <dd class="s-workflow__dd">Wire this node back to preprocessing.</dd>
                 </dl>
               </li>
             </ul>
 
-            <div class="s-canvas__foot">
-              <span class="s-canvas__tag">EXAMPLE</span>
-              <div class="s-canvas__dots">
-                <button class="s-canvas__dot" type="button" data-refusal-dot aria-pressed="true" aria-label="Show refusal example 1, data to model"></button>
-                <button class="s-canvas__dot" type="button" data-refusal-dot aria-pressed="false" aria-label="Show refusal example 2, model to split"></button>
-                <button class="s-canvas__dot" type="button" data-refusal-dot aria-pressed="false" aria-label="Show refusal example 3, representation to representation"></button>
+            <div class="s-workflow__foot">
+              <span class="s-workflow__tag">EXAMPLE</span>
+              <div class="s-workflow__dots">
+                <button class="s-workflow__dot" type="button" data-refusal-dot aria-pressed="true" aria-label="Show refusal example 1, data to model"></button>
+                <button class="s-workflow__dot" type="button" data-refusal-dot aria-pressed="false" aria-label="Show refusal example 2, model to split"></button>
+                <button class="s-workflow__dot" type="button" data-refusal-dot aria-pressed="false" aria-label="Show refusal example 3, representation to representation"></button>
               </div>
             </div>
           </div>
         </div>
 
-        <p class="s-canvas__note">Every refusal names the rule and the node that would fix it.</p>
+        <p class="s-workflow__note">Every refusal names the rule and the node that would fix it.</p>
       </div>
     </div>
 
-    <!-- PART 3 — plates ----------------------------------------------------- -->
-    <p class="eyebrow s-canvas__strap reveal"><span class="eyebrow__idx">FIG</span> CANVAS AND LIVE RUN</p>
+    <!-- PART 3 | plates ----------------------------------------------------- -->
+    <p class="eyebrow s-workflow__strap reveal"><span class="eyebrow__idx">FIG</span> WORKFLOW AND DATASETS</p>
 
-    <div class="s-canvas__shots" data-stagger="0.07">
-      <figure class="shot reveal" style="--shot-ar: 16/10;">
-        <div class="shot__frame">
-          <img src="assets/screenshots/canvas.png" alt="The AI Maestro canvas with data, preprocessing, representation, split and model nodes wired into a pipeline." loading="lazy" decoding="async">
+    <div class="s-workflow__shots" data-stagger="0.07">
+      <figure class="shot reveal" style="--shot-ar:2160/900;">
+        <a class="shot__frame" href="assets/screenshots/workflow.webp" data-preview aria-label="Open full size: The AI Maestro workflow with data, preprocessing, representation, split and model nodes wired into a pipeline.">
+          <img src="assets/screenshots/workflow.webp" alt="The AI Maestro workflow with data, preprocessing, representation, split and model nodes wired into a pipeline." width="2160" height="900" loading="lazy" decoding="async">
           <div class="shot__ph">
             <div class="shot__ph-box" aria-hidden="true"></div>
-            <p class="shot__ph-title">SCREENSHOT &#183; CANVAS</p>
-            <p class="shot__ph-meta">assets/screenshots/canvas.png &#183; 2560&#215;1600</p>
+            <p class="shot__ph-title">WORKFLOW PREVIEW</p>
+            <p class="shot__ph-meta">Preview unavailable. Please reload to try again.</p>
           </div>
-        </div>
-        <figcaption><span>FIG. 03 &#183; THE CANVAS</span><span>AM-01</span></figcaption>
+        <span class="shot__zoom" aria-hidden="true">View full size ↗</span></a>
+        <figcaption><span>FIG. 03 &#183; WORKFLOW EDITOR</span><span>AM-01</span></figcaption>
       </figure>
 
-      <figure class="shot reveal" style="--shot-ar: 16/9;">
-        <div class="shot__frame">
-          <img src="assets/screenshots/training.png" alt="A run in progress showing the training curve and CPU and GPU usage." loading="lazy" decoding="async">
+      <figure class="shot reveal" style="--shot-ar:2160/1350;">
+        <a class="shot__frame" href="assets/screenshots/datasets.webp" data-preview aria-label="Open full size: The AI Maestro datasets page with project datasets, row counts, targets, and the built-in dataset catalog.">
+          <img src="assets/screenshots/datasets.webp" alt="The AI Maestro datasets page with project datasets, row counts, targets, and the built-in dataset catalog." width="2160" height="1350" loading="lazy" decoding="async">
           <div class="shot__ph">
             <div class="shot__ph-box" aria-hidden="true"></div>
-            <p class="shot__ph-title">SCREENSHOT &#183; LIVE RUN</p>
-            <p class="shot__ph-meta">assets/screenshots/training.png &#183; 1920&#215;1080</p>
+            <p class="shot__ph-title">SCREENSHOT &#183; DATASETS</p>
+            <p class="shot__ph-meta">Preview unavailable. Please reload to try again.</p>
           </div>
-        </div>
-        <figcaption><span>FIG. 04 &#183; LIVE RUN</span><span>AM-01</span></figcaption>
+        <span class="shot__zoom" aria-hidden="true">View full size ↗</span></a>
+        <figcaption><span>FIG. 04 &#183; DATASETS</span><span>AM-01</span></figcaption>
       </figure>
     </div>
 
@@ -726,7 +736,7 @@
           </svg>
         </div>
         <h3 class="s-steps__name">Build</h3>
-        <p class="s-steps__copy">Drag nodes onto the canvas and wire them: data, preprocessing, representation, split, model. The canvas refuses any wire that would not run, and tells you why.</p>
+        <p class="s-steps__copy">Drag nodes into the editor and wire them: data, preprocessing, representation, split, model. The editor checks each connection and explains any missing steps.</p>
         <p class="s-steps__spec mono">Nodes / Wires / Validation</p>
       </li>
 
@@ -739,7 +749,7 @@
           </svg>
         </div>
         <h3 class="s-steps__name">Run</h3>
-        <p class="s-steps__copy">Press Run. A real Python engine trains and evaluates the pipeline while training curves and CPU/GPU usage update live.</p>
+        <p class="s-steps__copy">Press Run. Local Python execution trains and evaluates the pipeline while training curves and CPU/GPU usage update live.</p>
         <p class="s-steps__spec mono">Python engine / Live telemetry</p>
       </li>
 
@@ -766,7 +776,7 @@
 <!-- ======================================================================
      EXPORT
      ====================================================================== -->
-<!-- 06 · EXPORT — portability: reproducible experiments, leaderboard, plain-code export -->
+<!-- 06 · EXPORT | portability: reproducible experiments, leaderboard, plain-code export -->
 <section class="sec s-export" id="export" aria-labelledby="export-t">
   <div class="wrap">
 
@@ -779,73 +789,25 @@
     <div class="ex-grid">
       <span class="xhair ex-xh" aria-hidden="true"></span>
 
-      <!-- LEFT — experiments and leaderboard -->
+      <!-- LEFT | experiments and leaderboard -->
       <div class="ex-col reveal" style="--d:.06s">
         <h3 class="ex-h">Experiments and leaderboard</h3>
         <p class="ex-p">Every run is saved as a reproducible experiment: the workflow, the data configuration and the results travel together, so a number can always be traced back to the pipeline that produced it. Runs are collected on a leaderboard and compared side by side.</p>
 
-        <!-- The figures below are illustrative placeholders for layout. They are not measured results or benchmark claims. -->
-        <div class="ex-tw">
-          <table class="ex-table">
-            <caption class="sr-only">Illustrative leaderboard: five runs compared by metric. The best run is marked with a plus sign. The figures are examples, not measured results.</caption>
-            <thead>
-              <tr>
-                <th scope="col">Run</th>
-                <th scope="col">Model</th>
-                <th scope="col">Split</th>
-                <th scope="col" class="ex-num">Metric</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">RUN-011</th>
-                <td>KNN</td>
-                <td>80-20</td>
-                <td class="ex-num">0.804</td>
-              </tr>
-              <tr>
-                <th scope="row">RUN-012</th>
-                <td>SVM</td>
-                <td>80-20</td>
-                <td class="ex-num">0.837</td>
-              </tr>
-              <tr>
-                <th scope="row">RUN-013</th>
-                <td>LightGBM</td>
-                <td>70-30</td>
-                <td class="ex-num">0.874</td>
-              </tr>
-              <tr class="ex-best">
-                <th scope="row"><span class="ex-mark" aria-hidden="true">+</span><span class="sr-only">Best run. </span>RUN-014</th>
-                <td>XGBoost</td>
-                <td>80-20</td>
-                <td class="ex-num">0.891</td>
-              </tr>
-              <tr>
-                <th scope="row">RUN-015</th>
-                <td>Random forest</td>
-                <td>80-20</td>
-                <td class="ex-num">0.866</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="mono ex-legend">+ marks the best run <span class="ex-legend__note">&#183; figures are illustrative</span></p>
-
-        <figure class="shot reveal" style="--shot-ar: 16/9;">
-          <div class="shot__frame">
-            <img src="assets/screenshots/leaderboard.png" alt="The AI Maestro leaderboard comparing several runs of the same workflow." loading="lazy" decoding="async">
+        <figure class="shot reveal" style="--shot-ar:2160/1080;">
+          <a class="shot__frame" href="assets/screenshots/leaderboard.webp" data-preview aria-label="Open full size: Three completed random forest experiments with their scores and changed settings in AI Maestro.">
+          <img src="assets/screenshots/leaderboard.webp" alt="Three completed random forest experiments with their scores and changed settings in AI Maestro." width="2160" height="1080" loading="lazy" decoding="async">
             <div class="shot__ph">
               <div class="shot__ph-box" aria-hidden="true"></div>
               <p class="shot__ph-title">SCREENSHOT · LEADERBOARD</p>
-              <p class="shot__ph-meta">assets/screenshots/leaderboard.png · 1920×1080</p>
+              <p class="shot__ph-meta">Preview unavailable. Please reload to try again.</p>
             </div>
-          </div>
-          <figcaption><span>FIG. 05 · LEADERBOARD</span><span>AM-01</span></figcaption>
+        <span class="shot__zoom" aria-hidden="true">View full size ↗</span></a>
+          <figcaption><span>FIG. 05 · EXPERIMENT HISTORY</span><span>AM-01</span></figcaption>
         </figure>
       </div>
 
-      <!-- RIGHT — export -->
+      <!-- RIGHT | export -->
       <div class="ex-col ex-col--b reveal" style="--d:.12s">
         <h3 class="ex-h">Export to plain code</h3>
         <p class="ex-p">Any workflow exports to a plain Python script or a Jupyter notebook. The file is ordinary pandas, scikit-learn and XGBoost, and it runs on its own, without AI Maestro installed.</p>
@@ -941,12 +903,12 @@ print("accuracy:", round(acc, 3))</code></pre>
 
         <div class="req__row leader reveal">
           <dt class="req__k">GPU</dt>
-          <dd class="req__v">Optional &ndash; the CUDA build trains the PyTorch MLP and the graph neural networks on an NVIDIA GPU (driver 570 or newer); the standard build trains them on the CPU</dd>
+          <dd class="req__v">Optional: the CUDA build trains the PyTorch MLP and the graph neural networks on an NVIDIA GPU (driver 570 or newer); the standard build trains them on the CPU</dd>
         </div>
 
         <div class="req__row leader reveal">
           <dt class="req__k">Python</dt>
-          <dd class="req__v">Not required &ndash; AI Maestro ships with its own engine</dd>
+          <dd class="req__v">Not required: AI Maestro ships with its own engine</dd>
         </div>
 
         <div class="req__row leader reveal">
@@ -961,7 +923,7 @@ print("accuracy:", round(acc, 3))</code></pre>
 
         <div class="req__row leader reveal">
           <dt class="req__k">Code signing</dt>
-          <dd class="req__v">Not signed yet &ndash; see the note below</dd>
+          <dd class="req__v">Not signed yet: see the note below</dd>
         </div>
 
       </dl>
@@ -1021,7 +983,7 @@ print("accuracy:", round(acc, 3))</code></pre>
           </summary>
           <div class="s-faq__panel" data-panel>
             <div class="s-faq__a">
-              <p>No. You build the pipeline by wiring nodes on the canvas. If you want the code, export the workflow as a plain Python script or a Jupyter notebook.</p>
+              <p>No. You build the pipeline by wiring nodes in the editor. If you want the code, export the workflow as a plain Python script or a Jupyter notebook.</p>
             </div>
           </div>
         </details>
@@ -1069,7 +1031,7 @@ print("accuracy:", round(acc, 3))</code></pre>
           </summary>
           <div class="s-faq__panel" data-panel>
             <div class="s-faq__a">
-              <p>XGBoost, LightGBM, random forest, SVM, KNN, linear and logistic regression, a PyTorch MLP, and graph neural networks for molecules. Each one is a node you drop on the canvas.</p>
+              <p>XGBoost, LightGBM, random forest, SVM, KNN, linear and logistic regression, a PyTorch MLP, and graph neural networks for molecules. Each one is a node you drop in the editor.</p>
             </div>
           </div>
         </details>
@@ -1088,12 +1050,12 @@ print("accuracy:", round(acc, 3))</code></pre>
 
         <details class="s-faq__item">
           <summary class="s-faq__q">
-            <span class="s-faq__q-text">Why did the canvas refuse my wire?</span>
+            <span class="s-faq__q-text">Why can’t I connect these nodes?</span>
             <span class="s-faq__ico" aria-hidden="true"></span>
           </summary>
           <div class="s-faq__panel" data-panel>
             <div class="s-faq__a">
-              <p>Because the resulting pipeline would not run. The canvas names the rule and the node that would fix it. Most often that is a missing Split before the model.</p>
+              <p>Because the resulting pipeline would not run. The editor names the rule and the node that would fix it. Most often that is a missing Split before the model.</p>
             </div>
           </div>
         </details>
@@ -1237,7 +1199,7 @@ print("accuracy:", round(acc, 3))</code></pre>
         <svg class="ftr__mark" viewBox="0 0 192 200" fill="none" aria-hidden="true">
           <path d="M4.5 4.5 L96 98.5 L187.5 4.5 L187.5 195.5 L154.5 162.5 L154.5 88 L96 149 L37.5 88 L37.5 162.5 L4.5 195.5 Z" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
         </svg>
-        <p class="ftr__blurb">AI Maestro is a Windows desktop application for visual machine learning. Wire the pipeline on a canvas, run it on a real Python engine, keep every run as a reproducible experiment.</p>
+        <p class="ftr__blurb">Visual machine learning for Windows. Build a workflow, train locally, and keep the results with the settings that produced them.</p>
       </div>
 
       <div class="ftr__col">
@@ -1245,7 +1207,7 @@ print("accuracy:", round(acc, 3))</code></pre>
         <ul role="list">
           <li><a href="#features">Features</a></li>
           <li><a href="#models">Models &amp; data</a></li>
-          <li><a href="#workflow">The canvas</a></li>
+          <li><a href="#workflow">The workflow</a></li>
           <li><a href="#export">Experiments &amp; export</a></li>
         </ul>
       </div>
@@ -1278,7 +1240,7 @@ print("accuracy:", round(acc, 3))</code></pre>
   </div>
 </footer>
 
-<script src="js/app.js?v=0.1.0-6" defer></script>
-<script src="js/canvas.js?v=0.1.0-6" defer></script>
+<script src="js/app.js?v=0.1.0-7" defer></script>
+<script src="js/workflow.js?v=0.1.0-7" defer></script>
 </body>
 </html>
