@@ -11,6 +11,11 @@ const os = require('node:os');
     const page = await browser.newPage({ reducedMotion: 'reduce' });
     await page.goto(process.argv[2] || 'http://127.0.0.1:8765');
     assert.equal(await page.locator('a[download]').count(), 2);
+    assert(await page.evaluate(() => {
+      const build = getComputedStyle(document.querySelector('.s-dl__build'));
+      const steps = getComputedStyle(document.querySelector('.s-dl__seq'));
+      return build.backgroundColor === steps.backgroundColor && build.backgroundImage === steps.backgroundImage;
+    }), 'Install steps should share the build card surface');
     for (const [i, name] of ['standard', 'cuda'].entries()) {
       const card = page.locator('.s-dl__build').nth(i);
       const filename = name === 'standard' ? 'AIMaestro-Setup.exe' : 'AIMaestro-Setup-CUDA.exe';

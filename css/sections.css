@@ -1932,7 +1932,8 @@
   margin: clamp(22px, 2.6vw, 34px) auto 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-2);
+  background-color: var(--bg-2);
 }
 
 .s-dl__step {
