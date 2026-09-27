@@ -229,62 +229,82 @@
     });
   }
 
-  /* Pointer lighting eases toward the cursor, with at most one write per frame.
-     The loop sleeps when settled, off the card, or in a hidden tab. */
+  /* A fixed glow texture moves on its own layer. Keep each card's position
+     while it fades so crossing an edge never teleports a visible light. */
   function initSpotlight() {
     var pointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    var lights = new WeakMap();
     var active = null;
     var frame = 0;
     var previous = 0;
-    var x = 0, y = 0, targetX = 0, targetY = 0, rect;
+    var clientX = null, clientY = null;
     function stop() {
       if (frame) cancelAnimationFrame(frame);
       frame = 0;
       previous = 0;
+      if (active) active.classList.remove('is-lit');
       active = null;
+    }
+    function leave() { stop(); clientX = clientY = null; }
+    function paint(light) {
+      light.el.style.transform = 'translate3d(' + light.x.toFixed(2) + 'px,' + light.y.toFixed(2) + 'px,0)';
     }
     function tick(now) {
       frame = 0;
       if (!active || reduced || document.hidden) return;
-      var dt = previous ? Math.min(now - previous, 64) : 16;
+      var light = lights.get(active);
+      var rect = active.getBoundingClientRect();
+      var targetX = clientX - rect.left, targetY = clientY - rect.top;
+      var dt = previous ? Math.min(now - previous, 32) : 16;
       previous = now;
-      var blend = 1 - Math.exp(-dt / 70);
-      x += (targetX - x) * blend;
-      y += (targetY - y) * blend;
-      active.style.setProperty('--mx', x.toFixed(1) + 'px');
-      active.style.setProperty('--my', y.toFixed(1) + 'px');
-      if (Math.abs(targetX - x) + Math.abs(targetY - y) > 0.15) {
+      var blend = 1 - Math.exp(-dt / 110);
+      light.x += (targetX - light.x) * blend;
+      light.y += (targetY - light.y) * blend;
+      paint(light);
+      if (!active.classList.contains('is-lit')) active.classList.add('is-lit');
+      if (Math.abs(targetX - light.x) + Math.abs(targetY - light.y) > 0.1) {
         frame = requestAnimationFrame(tick);
       } else { previous = 0; }
     }
-    document.addEventListener('pointermove', function (e) {
-      if (reduced || !pointer.matches || e.pointerType === 'touch') return;
-      var card = e.target.closest ? e.target.closest('.card') : null;
+    function track(card) {
       if (!card) { stop(); return; }
       if (card !== active) {
         stop();
         active = card;
-        rect = card.getBoundingClientRect();
-        x = e.clientX - rect.left;
-        y = e.clientY - rect.top;
+        if (!lights.has(card)) {
+          var clip = document.createElement('span');
+          clip.className = 'card__glow';
+          clip.setAttribute('aria-hidden', 'true');
+          var el = document.createElement('span');
+          el.className = 'card__glow-light';
+          clip.appendChild(el);
+          card.appendChild(clip);
+          var rect = card.getBoundingClientRect();
+          var light = { el: el, x: clientX - rect.left, y: clientY - rect.top };
+          lights.set(card, light);
+          paint(light);
+        }
       }
-      targetX = e.clientX - rect.left;
-      targetY = e.clientY - rect.top;
       if (!frame) frame = requestAnimationFrame(tick);
+    }
+    document.addEventListener('pointermove', function (e) {
+      if (reduced || !pointer.matches || e.pointerType === 'touch') return;
+      clientX = e.clientX;
+      clientY = e.clientY;
+      track(e.target.closest ? e.target.closest('.card') : null);
     }, { passive: true });
-    document.documentElement.addEventListener('pointerleave', stop);
-    window.addEventListener('scroll', stop, { passive: true, capture: true });
-    window.addEventListener('resize', stop, { passive: true });
-    window.addEventListener('blur', stop);
-    document.addEventListener('visibilitychange', stop);
-    pointer.addEventListener('change', stop);
-    motion.addEventListener('change', function () {
-      stop();
-      $$('.card').forEach(function (card) {
-        card.style.removeProperty('--mx');
-        card.style.removeProperty('--my');
-      });
-    });
+    function refresh() {
+      if (clientX === null || reduced || !pointer.matches || document.hidden) return;
+      var target = document.elementFromPoint(clientX, clientY);
+      track(target && target.closest('.card'));
+    }
+    document.documentElement.addEventListener('pointerleave', leave);
+    window.addEventListener('scroll', refresh, { passive: true, capture: true });
+    window.addEventListener('resize', refresh, { passive: true });
+    window.addEventListener('blur', leave);
+    document.addEventListener('visibilitychange', leave);
+    pointer.addEventListener('change', leave);
+    motion.addEventListener('change', leave);
   }
 
   /* ---- footer year ------------------------------------------------------ */

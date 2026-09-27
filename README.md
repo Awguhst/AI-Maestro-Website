@@ -110,7 +110,8 @@ Done on 2026-09-24:
 
 - **Installer.** `downloads/AIMaestro-Setup.exe` is the 0.1.0 build (PyInstaller bundle
   wrapped by Inno Setup, built from `ML Studio` with `python -m aimaestro.packaging.build
-  --installer`). Every download button points at it.
+  --installer`). The download section offers the standard and CUDA installers.
+  The hero and navigation lead to this shared section.
 - **Screenshots.** Five WebP captures show the workflow, datasets page, diagnostic
   plots, experiment history, and molecular structures. The introduction is text-led.
   The overview capture remains available for the social preview.
@@ -132,27 +133,13 @@ Still to decide:
 
 ## Changing the version
 
-Version `0.1.0` appears eleven times in `index.html`. Search for `0.1.0` and work
-through the list; every one is visible text except the first:
+Search `index.html` for `0.1.0` when updating a release. Check the JSON-LD
+`softwareVersion`, hero specifications and build plate, exported-code sample,
+requirements, FAQ, download section, and footer.
 
-| Where | Roughly |
-|---|---|
-| JSON-LD `softwareVersion` | line 43 |
-| Header download button | line 75 |
-| Hero download button | line 113 |
-| Hero corner plate, `Build 0.1.0` | line 144 |
-| Comment at the top of the exported-code sample | line 846 |
-| System requirements, `VERSION` row | line 946 |
-| FAQ, "Is there a macOS or Linux build?" | line 1095 |
-| Download band lede | line 1132 |
-| Download button | line 1141 |
-| Download band file plate | line 1151 |
-| Footer build column | line 1231 |
-
-The installer filename `AIMaestro-Setup.exe` appears fourteen times: five as the
-`href` on a download link, one in the JSON-LD `downloadUrl`, and eight as visible
-text (hero spec strip, requirements `INSTALLER` row and its note, the download
-button, the file plate, install step 01, the closing note, and the footer).
+Keep installer filenames consistent in the JSON-LD `downloadUrl`, requirements,
+download links, file details, and install instructions. Only the two links inside
+`#download` should start an installer download.
 
 ## Design notes
 

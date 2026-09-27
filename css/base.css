@@ -261,21 +261,38 @@ kbd {
   box-shadow: var(--edge), var(--shadow-hover);
 }
 
-/* Spotlight: a faint lamp that follows the pointer across a card, drawn as
-   the card's own background image so the bracket corner ticks keep their
-   pseudo-elements. app.js writes --mx / --my in px; --spot fades it in. */
-@property --spot { syntax: "<number>"; inherits: false; initial-value: 0; }
+/* Move a fixed gradient using transform, without repainting the background.
+   The clipped layer sits behind content and leaves corner ticks intact. */
 .card {
-  --spot: 0;
+  isolation: isolate;
   background-color: var(--bg-2);
-  background-image: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%),
-                    rgba(244, 243, 240, var(--spot)), transparent 72%), var(--surface);
+  background-image: var(--surface);
   transition: border-color var(--dur) var(--ease),
-              background-color var(--dur) var(--ease),
-              --spot var(--dur) var(--ease),
               box-shadow var(--dur) var(--ease);
 }
-.card:hover { --spot: 0.055; background-color: #131312; }
+.card__glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.card.is-lit > .card__glow { opacity: 1; }
+@starting-style { .card.is-lit > .card__glow { opacity: 0; } }
+.card__glow-light {
+  position: absolute;
+  width: 640px;
+  height: 640px;
+  left: -320px;
+  top: -320px;
+  background: radial-gradient(circle, rgba(244, 238, 222, .065), rgba(244, 238, 222, .025) 35%, transparent 70%);
+}
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .card__glow { display: none; }
+}
 .card:focus-within { border-color: var(--line-3); box-shadow: var(--edge), var(--shadow-hover); }
 
 /* Corner ticks : drawing-sheet registration marks */
@@ -495,10 +512,7 @@ kbd {
 .nav__link:hover::after, .nav__link.is-current::after { scale: 1 1; }
 .nav__link.is-current { color: var(--ink); }
 
-/* The in-menu download button is for the mobile drawer only. */
-.nav > .btn { display: none; }
-
-.hdr__cta { display: flex; align-items: center; gap: 1rem; }
+.hdr__cta { display: none; }
 
 .burger {
   display: none;
@@ -614,7 +628,7 @@ html:not(.js) .reveal { opacity: 1; translate: none; }
 
 @media (max-width: 860px) {
   .burger { display: grid; }
-  .hdr__cta > .btn { display: none; }
+  .hdr__cta { display: flex; align-items: center; }
 
   .nav {
     position: fixed;
@@ -654,7 +668,6 @@ html:not(.js) .reveal { opacity: 1; translate: none; }
     font-size: var(--t-mono-l);
   }
   .nav__link::after { display: none; }
-  .nav > .btn { display: inline-flex; margin-top: 1.5rem; justify-content: center; }
 }
 
 @media (max-width: 560px) {
