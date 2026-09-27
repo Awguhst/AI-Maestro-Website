@@ -1,25 +1,29 @@
 # Installer drop
 
-For a local preview, put the built installer here, named exactly:
+For a local preview, put both built installers here, named exactly:
 
 ```
 AIMaestro-Setup.exe
+AIMaestro-Setup-CUDA.exe
 ```
 
-Every download button on the site points at `downloads/AIMaestro-Setup.exe` with the
-`download` attribute, so nothing needs editing when you replace the file.
+Download buttons point at these stable names with the `download` attribute.
+Replace the files after rebuilding and update the measured download and installed
+sizes in `index.html` (`data-size` and `data-installed`).
 
-The file is git-ignored: GitHub rejects files over 100 MB, so the deployed site does not
-ship it. In the Docker image nginx redirects this path to the `AIMaestro-Setup.exe` asset of
-the latest GitHub release of `Awguhst/AI-Maestro-Website` (see the root README, "Deploy").
+The executables are git-ignored: GitHub rejects files over 100 MB, so a source commit
+does not upload them. In the Docker image nginx redirects each download path to its
+matching asset on the latest GitHub release of `Awguhst/AI-Maestro-Website` (see the
+root README, "Deploy"). Publishing new downloads requires uploading both release
+assets separately from pushing the website commit.
+
+`assets/downloads.json` records the desktop source commit, file sizes, and SHA-256
+checksums of the prepared installers. Regenerate those values whenever the files change.
 
 If you rename the installer (for example to include the version,
-`AIMaestro-Setup-0.1.0.exe`), search `index.html` for `AIMaestro-Setup.exe`: it appears
-fourteen times. Five are the `href` on a download link and one is the JSON-LD
-`downloadUrl` — those must all change. The other eight are visible text (the hero spec
-strip, the system requirements `INSTALLER` row and its SmartScreen note, the download
-button, the file plate, install step 01, the closing note, and the footer's download
-column), and should change too so the page still names the file you ship.
+`AIMaestro-Setup-0.1.0.exe`), update its links, JSON-LD `downloadUrl`, and visible
+filename references in `index.html`, along with the nginx redirect and release asset.
+Keep the standard and CUDA filenames distinct.
 
 Serving note: some static hosts refuse to serve `.exe` by default, or serve it with a
 `text/plain` content type. If a download opens as text instead of saving, set the MIME type to

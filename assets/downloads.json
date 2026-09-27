@@ -1,0 +1,24 @@
+{
+  "version": "0.1.0",
+  "desktopCommit": "f2e55ee46698dc87649fab211dff60748da2a822",
+  "artifacts": [
+    {
+      "variant": "standard",
+      "filename": "AIMaestro-Setup.exe",
+      "path": "downloads/AIMaestro-Setup.exe",
+      "sizeBytes": 370300691,
+      "installedBytes": 1346234335,
+      "sha256": "6f503e63754626f090b07bc7ebd0bbdf1ae4e8252520262bf1155d534a6ba7ba",
+      "builtAt": "2026-09-27T17:03:30.5505435Z"
+    },
+    {
+      "variant": "cuda",
+      "filename": "AIMaestro-Setup-CUDA.exe",
+      "path": "downloads/AIMaestro-Setup-CUDA.exe",
+      "sizeBytes": 2034968387,
+      "installedBytes": 5234856563,
+      "sha256": "3c0dc2b22317c8a714fd810489976d587ffb9babf3e55c68db1415a0593da7b5",
+      "builtAt": "2026-09-27T17:35:26.7602041Z"
+    }
+  ]
+}
