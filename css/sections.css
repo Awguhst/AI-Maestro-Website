@@ -1607,6 +1607,7 @@
    Sticky plate head at >=1024px; hairline accordion driven by app.js. */
 
 .s-faq {
+  --faq-pad: clamp(12px, 1.5vw, 20px);
   --faq-num: 1.15rem;                            /* index column width      */
   --faq-gap: clamp(0.9rem, 1.8vw, 1.25rem);      /* index -> question gap   */
   --faq-ind: calc(var(--faq-num) + var(--faq-gap));
@@ -1645,6 +1646,7 @@
 .s-faq__list {
   counter-reset: faq;
   border-bottom: 1px solid var(--line);
+  overflow-anchor: none;
 }
 
 .s-faq__item { counter-increment: faq; }
@@ -1654,12 +1656,14 @@
   align-items: center;
   gap: var(--faq-gap);
   padding-block: clamp(1.15rem, 2.2vw, 1.6rem);
+  padding-inline: var(--faq-pad);
   border-top: 1px solid var(--line);
   cursor: pointer;
   list-style: none;
 }
 
 .s-faq__q::-webkit-details-marker { display: none; }
+.s-faq__q:focus-visible { outline-offset: -4px; border-radius: var(--radius); }
 
 /* plate index : 01 … 10 */
 .s-faq__q::before {
@@ -1720,12 +1724,12 @@
 .s-faq__q:focus-visible .s-faq__ico::before,
 .s-faq__q:focus-visible .s-faq__ico::after { background: var(--ink); }
 
-.s-faq__item[open] .s-faq__q::before { color: var(--ink); }
+.s-faq__item:is([data-expanded="true"], [open]:not([data-expanded])) .s-faq__q::before { color: var(--ink); }
 
-.s-faq__item[open] .s-faq__ico::before,
-.s-faq__item[open] .s-faq__ico::after { background: var(--ink); }
+.s-faq__item:is([data-expanded="true"], [open]:not([data-expanded])) .s-faq__ico::before,
+.s-faq__item:is([data-expanded="true"], [open]:not([data-expanded])) .s-faq__ico::after { background: var(--ink); }
 
-.s-faq__item[open] .s-faq__ico::after { rotate: 0deg; }
+.s-faq__item:is([data-expanded="true"], [open]:not([data-expanded])) .s-faq__ico::after { rotate: 0deg; }
 
 /* ---- panel ------------------------------------------------------------- */
 /* app.js animates this element's height: it carries no box of its own. */
@@ -1739,9 +1743,9 @@
 
 .s-faq__a {
   padding-top: 0;
-  padding-right: clamp(0rem, 2.5vw, 2.75rem);
+  padding-right: calc(var(--faq-pad) + .85rem + var(--faq-gap));
   padding-bottom: clamp(1.4rem, 2.6vw, 2rem);
-  padding-left: var(--faq-ind);
+  padding-left: calc(var(--faq-pad) + var(--faq-ind));
   max-width: 66ch;
 }
 
@@ -2056,7 +2060,7 @@
   box-shadow: var(--edge), var(--shadow-hover);
 }
 .s-faq__item { transition: background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
-.s-faq__item:hover, .s-faq__item[open] {
+.s-faq__item:hover, .s-faq__item:is([data-expanded="true"], [open]:not([data-expanded])) {
   background: rgba(244, 243, 240, .018);
   box-shadow: inset 2px 0 0 var(--line-2);
 }

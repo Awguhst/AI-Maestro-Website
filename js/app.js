@@ -192,14 +192,32 @@
         if (!summary || !panel) return;
         var desired = d.open;
         var animation = null;
+        d.dataset.expanded = String(desired);
+        summary.setAttribute('aria-expanded', String(desired));
+
+        var settle = function () {
+          if (animation) {
+            animation.onfinish = null;
+            animation.cancel();
+            animation = null;
+          }
+          d.open = desired;
+        };
 
         // Read the current rendered height before canceling an interrupted tween.
-        // Rapid open/close clicks reverse from that exact position.
+        // Closed details can still report the hidden panel's natural height.
         var setOpen = function (open) {
-          var from = panel.getBoundingClientRect().height;
+          if (desired === open && (animation || d.open === open)) return;
+          var from = d.open ? panel.getBoundingClientRect().height : 0;
           desired = open;
-          if (animation) { animation.cancel(); animation = null; }
-          if (reduced || !panel.animate) { d.open = open; return; }
+          d.dataset.expanded = String(open);
+          summary.setAttribute('aria-expanded', String(open));
+          if (animation) {
+            animation.onfinish = null;
+            animation.cancel();
+            animation = null;
+          }
+          if (reduced || !panel.animate) { settle(); return; }
           d.open = true;
           animation = panel.animate([
             { height: from + 'px' },
@@ -219,12 +237,10 @@
           setOpen(opening);
         });
         motion.addEventListener('change', function () {
-          if (reduced && animation) {
-            animation.cancel();
-            animation = null;
-            d.open = desired;
-          }
+          if (reduced) settle();
         });
+        // A width change reflows answer text; release any old pixel-height tween.
+        window.addEventListener('resize', settle, { passive: true });
       });
     });
   }
