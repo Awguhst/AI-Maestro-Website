@@ -1,24 +1,24 @@
 {
   "version": "0.1.0",
-  "desktopCommit": "f2e55ee46698dc87649fab211dff60748da2a822",
+  "desktopCommit": "cdfe0386573472e0520be4690588448583f951cc",
   "artifacts": [
     {
       "variant": "standard",
       "filename": "AIMaestro-Setup.exe",
       "path": "downloads/AIMaestro-Setup.exe",
-      "sizeBytes": 370300691,
-      "installedBytes": 1346234335,
-      "sha256": "6f503e63754626f090b07bc7ebd0bbdf1ae4e8252520262bf1155d534a6ba7ba",
-      "builtAt": "2026-09-27T17:03:30.5505435Z"
+      "sizeBytes": 370398591,
+      "installedBytes": 1346388146,
+      "sha256": "c75fdfc1a0018101613a4cab27001bf77dc9c147fecca606e23a3cafaca605d1",
+      "builtAt": "2026-10-04T21:02:39.2976700Z"
     },
     {
       "variant": "cuda",
       "filename": "AIMaestro-Setup-CUDA.exe",
       "path": "downloads/AIMaestro-Setup-CUDA.exe",
-      "sizeBytes": 2034968387,
-      "installedBytes": 5234856563,
-      "sha256": "3c0dc2b22317c8a714fd810489976d587ffb9babf3e55c68db1415a0593da7b5",
-      "builtAt": "2026-09-27T17:35:26.7602041Z"
+      "sizeBytes": 2034963532,
+      "installedBytes": 5235010374,
+      "sha256": "30254413cf35526070cd3994b9952a75538e9a76403f06df13e3543deb49aaa0",
+      "builtAt": "2026-10-04T22:03:06.1836390Z"
     }
   ]
 }
