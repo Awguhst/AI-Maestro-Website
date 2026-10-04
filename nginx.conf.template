@@ -32,11 +32,12 @@ server {
         add_header X-Content-Type-Options nosniff always;
         add_header X-Frame-Options SAMEORIGIN always;
         add_header Referrer-Policy strict-origin-when-cross-origin always;
+        add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'" always;
         add_header Cache-Control "public, max-age=300, must-revalidate";
         sub_filter_once off;
         sub_filter_types text/html;
         sub_filter '<link rel="canonical" href="/">' '<link rel="canonical" href="$site_url/">';
-        sub_filter 'content="assets/og-image.png?v=0.1.0-7"' 'content="$site_url/assets/og-image.png?v=0.1.0-7"';
+        sub_filter 'content="assets/og-image.png?v=0.1.0-8"' 'content="$site_url/assets/og-image.png?v=0.1.0-8"';
         sub_filter '<meta name="google-site-verification" content="">' '<meta name="google-site-verification" content="${GOOGLE_SITE_VERIFICATION}">';
     }
     location = /index.html { return 301 $site_url/; }
@@ -68,4 +69,7 @@ server {
     add_header X-Content-Type-Options nosniff always;
     add_header X-Frame-Options SAMEORIGIN always;
     add_header Referrer-Policy strict-origin-when-cross-origin always;
+    # the inline script that marks JS as available is allowed by its hash; the inline
+    # style attributes are CSS custom properties (--d, --shot-ar), hence unsafe-inline for styles
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'" always;
 }

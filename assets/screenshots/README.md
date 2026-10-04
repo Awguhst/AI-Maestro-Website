@@ -1,6 +1,6 @@
 # App screenshots
 
-Captured from the current QML app on 2026-09-27. These are actual rendered app
+Captured from the current QML app on 2026-10-04. These are actual rendered app
 frames, with measured local runs. No metrics or interface elements are drawn over
 the captures. The screenshots retain their native colours and use WebP quality 92.
 
