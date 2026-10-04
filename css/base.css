@@ -217,22 +217,9 @@ kbd {
 .btn:hover .btn__sub, .btn:focus-visible .btn__sub { color: var(--ink-2); }
 
 .btn--primary {
-  /* the primary key is black: the page's own ground, a white rule and white type
-     carry the emphasis, the ghost key beside it keeps its grey rule and muted type */
-  background: var(--bg);
-  color: var(--ink);
-  border-color: var(--ink);
+  /* the same key surface, rule and type as every other button; only its size says primary */
   --btn-pad: 1.15rem 2.35rem;
 }
-.btn--primary::before { background: linear-gradient(120deg, rgba(244, 243, 240, .10), rgba(244, 243, 240, .02)); }
-.btn--primary .btn__sub { color: var(--ink-2); }
-.btn--primary:hover, .btn--primary:focus-visible {
-  background: var(--bg-3);
-  color: var(--ink);
-  border-color: var(--ink);
-  box-shadow: 0 6px 22px -8px rgba(244, 243, 240, .18), var(--shadow-hover);
-}
-.btn--primary:hover .btn__sub, .btn--primary:focus-visible .btn__sub { color: var(--ink); }
 
 .btn--ghost { border-color: var(--line-2); color: var(--ink-2); }
 .btn--sm { --btn-pad: 0.7rem 1.35rem; font-size: var(--t-mono); }
